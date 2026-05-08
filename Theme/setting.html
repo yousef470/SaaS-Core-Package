@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Settings | SaaS-Core" data-ar="الإعدادات | SaaS-Core">Settings | SaaS-Core</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/settings.css">
+</head>
+<body>
+
+<div class="background-blobs"></div>
+
+<div class="settings-container">
+    <header class="settings-header">
+        <h1 data-en="Account Settings" data-ar="إعدادات الحساب">Account Settings</h1>
+        <p data-en="Manage your profile and application preferences" data-ar="إدارة ملفك الشخصي وتفضيلات التطبيق">
+            Manage your profile and application preferences
+        </p>
+    </header>
+
+    <div class="settings-grid">
+        <!-- قسم المعلومات الشخصية -->
+        <section class="settings-card profile-section">
+            <div class="card-header">
+                <i class="fa-solid fa-user-gear"></i>
+                <h2 data-en="Profile Information" data-ar="المعلومات الشخصية">Profile Information</h2>
+            </div>
+            
+            <div class="profile-upload">
+                <div class="image-wrapper">
+                    <img id="previewImage" src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile">
+                    <label for="profileImage" class="upload-btn">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+                </div>
+                <input type="file" id="profileImage" accept="image/*" hidden>
+            </div>
+
+            <div class="input-group">
+                <label data-en="Full Name" data-ar="الاسم الكامل"><i class="fa-solid fa-signature"></i> Full Name</label>
+                <input type="text" id="username" placeholder="John Doe">
+            </div>
+
+            <div class="input-group">
+                <label data-en="Email Address" data-ar="البريد الإلكتروني"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" placeholder="user@example.com">
+            </div>
+        </section>
+
+        <!-- قسم الأمان وتغيير كلمة المرور -->
+        <section class="settings-card">
+            <div class="card-header">
+                <i class="fa-solid fa-lock"></i>
+                <h2 data-en="Security" data-ar="الأمان">Security</h2>
+            </div>
+            <div class="input-group">
+                <label data-en="Current Password" data-ar="كلمة المرور الحالية">Current Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="currentPassword" class="password-input">
+                    <i class="fa-solid fa-eye toggle-password"></i>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label data-en="New Password" data-ar="كلمة المرور الجديدة">New Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="newPassword" class="password-input">
+                    <i class="fa-solid fa-eye toggle-password"></i>
+                </div>
+            </div>
+
+            <button id="changePasswordBtn" class="main-btn">
+                <span data-en="Update Password" data-ar="تحديث كلمة المرور">Update Password</span>
+            </button>
+        </section>
+
+        <!-- قسم التفضيلات والنظام -->
+        <section class="settings-card">
+            <div class="card-header">
+                <i class="fa-solid fa-sliders"></i>
+                <h2 data-en="System Preferences" data-ar="تفضيلات النظام">System Preferences</h2>
+            </div>
+            
+            <div class="toggle-wrapper">
+                <div class="toggle-info">
+                    <span data-en="Notifications" data-ar="التنبيهات">Notifications</span>
+                    <small data-en="Enable or disable email alerts" data-ar="تفعيل أو تعطيل تنبيهات البريد">Enable or disable email alerts</small>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="notificationsToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <hr class="divider">
+
+            <div class="toggle-wrapper">
+                <div class="toggle-info">
+                    <span data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</span>
+                    <small data-en="Toggle between dark and light themes" data-ar="التبديل بين الوضع الليلي والنهاري">Toggle between themes</small>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <hr class="divider">
+
+            <div class="toggle-wrapper">
+                <div class="toggle-info">
+                    <span data-en="RTL Layout" data-ar="واجهة عربية">RTL Layout</span>
+                    <small data-en="Change text direction to Right-to-Left" data-ar="تغيير اتجاه النص من اليمين لليسار">Right-to-Left support</small>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="rtlToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button id="saveSettings" class="main-btn">
+                <span data-en="Save All Changes" data-ar="حفظ جميع التغييرات">Save All Changes</span>
+                <i class="fa-solid fa-check"></i>
+            </button>
+        </section>
+    </div>
+    
+    <a href="index.html" class="back-home-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span data-en="Back to Dashboard" data-ar="العودة للوحة التحكم">Back to home</span>
+    </a>
+</div>
+
+<script src="assets/js/settings.js"></script>
+</body>
+</html>

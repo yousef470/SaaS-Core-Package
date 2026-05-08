@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title
+      data-en="Authentication | SaaS-Core"
+      data-ar="تسجيل الدخول | SaaS-Core"
+    >
+      Authentication | SaaS-Core
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="assets/css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- LOGIN FORM -->
+      <div class="form-box login">
+        <form action="#">
+          <h1 data-en="Login" data-ar="تسجيل الدخول">Login</h1>
+
+          <div class="input-box">
+            <input
+              type="text"
+              id="loginUsername"
+              placeholder="Username"
+              data-en-placeholder="Username"
+              data-ar-placeholder="اسم المستخدم"
+              required
+            />
+            <i class="fa-solid fa-user icon-left"></i>
+            <small class="error-txt"></small>
+          </div>
+
+          <div class="input-box password-box">
+            <input
+            id="loginPassword"
+              type="password"
+              placeholder="Password"
+              data-en-placeholder="Password"
+              data-ar-placeholder="كلمة المرور"
+              required
+            />
+            <i class="fa-solid fa-lock icon-left"></i>
+            <!-- تأكد أن الـ CSS يعطي هذه الأيقونة position: absolute; right: 10px -->
+            <i class="fa-solid fa-eye icon-right toggle-password"></i>
+          </div>
+
+          <div class="forget-link">
+            <a href="#" data-en="Forget password?" data-ar="نسيت كلمة المرور؟"
+              >Forget password?</a
+            >
+          </div>
+
+          <button type="submit" class="btn" data-en="Login" data-ar="دخول">
+            Login
+          </button>
+
+          <p class="switch-text">
+            <span data-en="Don't have an account?" data-ar="ليس لديك حساب؟"
+              >Don't have an account?</span
+            >
+            <span
+              class="switch-to-register"
+              data-en="Register"
+              data-ar="إنشاء حساب"
+              >Register</span
+            >
+          </p>
+
+          <p data-en="or login with social platform" data-ar="أو سجل دخول عبر">
+            or login with social platform
+          </p>
+
+          <div class="social-icons">
+            <a href="#" title="Google"><i class="fa-brands fa-google"></i></a>
+            <a href="#" title="Github"><i class="fa-brands fa-github"></i></a>
+            <a href="#" title="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+          </div>
+        </form>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div class="form-box register">
+        <form action="#">
+          <h1 data-en="Registration" data-ar="حساب جديد">Registration</h1>
+
+          <div class="input-box">
+            <input
+              type="text"
+              id="registerUsername"
+              placeholder="Username"
+              data-en-placeholder="Username"
+              data-ar-placeholder="اسم المستخدم"
+              required
+            />
+            <i class="fa-solid fa-user icon-left"></i>
+          </div>
+
+          <div class="input-box">
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="Email"
+              data-en-placeholder="Email"
+              data-ar-placeholder="البريد الإلكتروني"
+              required
+            />
+            <i class="fa-solid fa-envelope icon-left"></i>
+          </div>
+
+          <div class="input-box password-box">
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Password"
+              data-en-placeholder="Password"
+              data-ar-placeholder="كلمة المرور"
+              required
+            />
+            <i class="fa-solid fa-lock icon-left"></i>
+            <i class="fa-solid fa-eye icon-right toggle-password"></i>
+          </div>
+          <div id="strengthText"></div>
+          <div class="password-strength-container">
+            <div id="strengthBar" class="strength-bar"></div>
+          </div>
+          <small
+            id="strengthText"
+            data-en="Enter password"
+            data-ar="أدخل كلمة المرور"
+          ></small>
+          <div class="input-box password-box">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              data-en-placeholder="Confirm Password"
+              data-ar-placeholder="تأكيد كلمة المرور"
+              required
+            />
+            <i class="fa-solid fa-lock icon-left"></i>
+            <i class="fa-solid fa-eye icon-right toggle-password"></i>
+          </div>
+          <div class="error-txt"></div>
+
+          <button
+            type="submit"
+            class="btn"
+            data-en="Register"
+            data-ar="إنشاء الحساب"
+          >
+            Register
+          </button>
+
+          <p class="switch-text">
+            <span data-en="Already have an account?" data-ar="لديك حساب بالفعل؟"
+              >Already have an account?</span
+            >
+            <span class="switch-to-login" data-en="Login" data-ar="دخول"
+              >Login</span
+            >
+          </p>
+        </form>
+      </div>
+
+      <!-- TOGGLE BOX -->
+      <div class="toggle-box">
+        <div class="toggle-panel toggle-left">
+          <h1 data-en="Hello, welcome!" data-ar="أهلاً بك!">Hello, welcome!</h1>
+          <p data-en="Don't have an account?" data-ar="لا تملك حساباً بعد؟">
+            Don't have an account?
+          </p>
+          <button
+            class="btn register-btn"
+            data-en="Register"
+            data-ar="إنشاء حساب"
+          >
+            Register
+          </button>
+        </div>
+
+        <div class="toggle-panel toggle-right">
+          <h1 data-en="Welcome back" data-ar="مرحباً بعودتك">Welcome back</h1>
+          <p data-en="Already have an account?" data-ar="تملك حساباً بالفعل؟">
+            Already have an account?
+          </p>
+          <button class="btn login-btn" data-en="Login" data-ar="دخول">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/login.js"></script>
+  </body>
+</html>

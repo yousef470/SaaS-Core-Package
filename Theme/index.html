@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SaaS-Core: A professional, high-performance dashboard & landing page boilerplate with native RTL support."
+    />
+    <!-- استبدال الاسم بـ SaaS-Core ليكون قالباً عاماً -->
+    <title>SaaS-Core | Professional Agency Dashboard Template</title>
+
+    <link rel="stylesheet" href="assets/css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Sidebar مع روابط عامة -->
+      <aside class="sidebar">
+        <nav>
+          <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+          <a href="#features" data-en="Features" data-ar="المميزات">Features</a>
+          <a href="#pricing" data-en="Pricing" data-ar="الأسعار">Pricing</a>
+          <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+          <a href="setting.html" data-en="Settings" data-ar="الإعدادات"
+            >Settings</a
+          >
+        </nav>
+      </aside>
+
+      <div class="overlay"></div>
+
+      <header class="navbar">
+        <div class="nav-left">
+          <button class="menu-btn" id="toggleSidebar">☰</button>
+          <h1 class="logo">SaaS<span>Core</span></h1>
+        </div>
+
+        <div class="links">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="navbar-buttons">
+          <button id="langToggle">EN</button>
+          <button id="themeToggle">🌙</button>
+          <button id="authBtn" class="auth-btn">Login</button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Hero Section: جعلتها أكثر تركيزاً على توفير الوقت للمشتري -->
+        <section id="home" class="section hero-section">
+          <h1
+            data-en="Launch Your SaaS Dashboard in Minutes, Not Weeks"
+            data-ar="أطلق لوحة تحكم مشروعك في دقائق وليس أسابيع"
+          >
+            Launch Your SaaS Dashboard in Minutes, Not Weeks
+          </h1>
+
+          <p
+            data-en="A premium boilerplate built with Vanilla JS & Tailwind CSS. Features modern Glassmorphism, Dark Mode, and Native RTL support."
+            data-ar="قالب احترافي مبني بـ Vanilla JS و Tailwind CSS. يتميز بتصميم عصري، وضع ليلي، ودعم كامل للغة العربية."
+          >
+            A premium boilerplate built with Vanilla JS & Tailwind CSS. Features
+            modern Glassmorphism, Dark Mode, and Native RTL support.
+          </p>
+
+          <div class="btns-group">
+            <a
+              href="dash.html"
+              class="btn-cta"
+              data-en="Live Demo"
+              data-ar="معاينة حية"
+              >Live Demo</a
+            >
+            <a
+              href="https://gumroad.com/a/673625187"
+              class="btn-secondary"
+              data-en="Get this system"
+              data-ar="احصل علي هذا"
+              >Get this system</a
+            >
+          </div>
+        </section>
+
+        <!-- Pain Point Section: مخاطبة احتياج العميل مباشرة -->
+        <section class="section reveal">
+          <div class="pain-box">
+            <h2
+              data-en="Tired of Messy Code & Slow Frameworks?"
+              data-ar="تعبت من الكود المعقد والفريم-وركس البطيئة؟"
+            >
+              Tired of Messy Code & Slow Frameworks?
+            </h2>
+            <p
+              data-en="Our template is framework-free. Just pure, lightning-fast HTML/JS that easy to integrate with any backend."
+              data-ar="قالبنا خالي من التعقيدات. كود نقي وسريع جداً يسهل ربطه مع أي نظام برمج خلفي."
+            >
+              Our template is framework-free. Just pure, lightning-fast HTML/JS
+              that easy to integrate with any backend.
+            </p>
+          </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="section features-section reveal">
+          <div class="grid">
+            <div class="feature-card fade-up">
+              <div class="icon"><i class="fas fa-language"></i></div>
+              <h3 data-en="Native RTL Support" data-ar="دعم كامل للعربية">
+                Native RTL Support
+              </h3>
+              <p
+                data-en="Built-in Arabic support with a smooth layout switcher."
+                data-ar="دعم أصلي للغة العربية مع محول اتجاهات سلس."
+              >
+                Built-in Arabic support with a smooth layout switcher.
+              </p>
+            </div>
+
+            <div class="feature-card fade-up">
+              <div class="icon"><i class="fas fa-moon"></i></div>
+              <h3 data-en="Glassmorphism UI" data-ar="تصميم عصري">
+                Glassmorphism UI
+              </h3>
+              <p
+                data-en="Modern, sleek design with fully functional Dark/Light modes."
+                data-ar="تصميم زجاجي عصري مع وضع ليلي ونهاري متكامل."
+              >
+                Modern, sleek design with fully functional Dark/Light modes.
+              </p>
+            </div>
+
+            <div class="feature-card fade-up">
+              <div class="icon"><i class="fas fa-code"></i></div>
+              <h3 data-en="Vanilla Stack" data-ar="كود نقي">Vanilla Stack</h3>
+              <p
+                data-en="No React/Vue overhead. Just HTML, Tailwind CSS, and JS."
+                data-ar="بدون تعقيدات. فقط HTML و Tailwind و JS لسرعة قصوى."
+              >
+                No React/Vue overhead. Just HTML, Tailwind CSS, and JS.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pricing Section: جعلتها جاهزة لبيع القالب نفسه -->
+        <section id="pricing" class="section pricing-section reveal">
+          <h2 data-en="Choose Your License" data-ar="اختر رخصة الاستخدام">
+            Choose Your License
+          </h2>
+          <div class="pricing-grid">
+            <div class="card pricing-card fade-up">
+              <h3 data-en="Standard" data-ar="الرخصة العادية">Standard</h3>
+              <p class="price">$49</p>
+              <ul>
+                <li data-en="Single Project Use" data-ar="استخدام لمشروع واحد">
+                  Single Project Use
+                </li>
+                <li data-en="Full Source Code" data-ar="الكود المصدري الكامل">
+                  Full Source Code
+                </li>
+                <li data-en="Lifetime Updates" data-ar="تحديثات مدى الحياة">
+                  Lifetime Updates
+                </li>
+              </ul>
+              <button
+                class="btn-primary"
+                data-en="Buy Now"
+                data-ar="اشتري الآن"
+              >
+                Buy Now
+              </button>
+            </div>
+
+            <div class="card pricing-card highlight fade-up">
+              <h3 data-en="Extended" data-ar="الرخصة الممتدة">Extended</h3>
+              <p class="price">$199</p>
+              <ul>
+                <li data-en="Unlimited Projects" data-ar="مشاريع غير محدودة">
+                  Unlimited Projects
+                </li>
+                <li
+                  data-en="Resell as End Product"
+                  data-ar="إعادة البيع كمنتج نهائي"
+                >
+                  Resell as End Product
+                </li>
+                <li data-en="Priority Support" data-ar="دعم فني ذو أولوية">
+                  Priority Support
+                </li>
+              </ul>
+              <button
+                class="btn-primary"
+                data-en="Get Extended"
+                data-ar="احصل على الممتدة"
+              >
+                Get Extended
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Section Contact: Nexora Edition -->
+        <section id="contact" class="contact-section-unique reveal">
+          <div class="contact-header-unique">
+            <h2 data-en="Get in Touch" data-ar="تواصل معنا">Get in Touch</h2>
+            <p
+              data-en="Have a question? We are here to help."
+              data-ar="لديك استفسار؟ نحن هنا للمساعدة."
+            >
+              Have a question? We are here to help.
+            </p>
+          </div>
+
+          <div class="contact-grid-unique">
+            <!-- الجنب الشمال: الـ Info Card (كبرنا مساحتها) -->
+            <div class="contact-info-panel">
+              <div class="info-item-unique">
+                <div class="icon-box-unique">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="text-box-unique">
+                  <span>EMAIL US</span>
+                  <p>support@saascore.com</p>
+                </div>
+              </div>
+
+              <!-- مكان جاهز لو حبيت تضيف معلومة تانية مستقبلاً -->
+              <div class="info-item-unique">
+                <div class="icon-box-unique">
+                  <i class="fas fa-headset"></i>
+                </div>
+                <div class="text-box-unique">
+                  <span>SUPPORT</span>
+                  <p>24/7 Online Help</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- الجنب اليمين: الفورم -->
+            <form class="contact-form-unique">
+              <div class="input-group-unique">
+                <input type="text" placeholder="First Name" />
+                <input type="text" placeholder="Last Name" />
+              </div>
+              <input type="email" placeholder="Email Address" />
+              <textarea
+                placeholder="Tell us about your project..."
+                rows="5"
+              ></textarea>
+              <button type="submit" class="btn-submit-unique">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-copy">
+        <p>© 2026 SaaS-Core. Premium Boilerplate for Modern Startups.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

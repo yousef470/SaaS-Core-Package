@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS-Core Documentation | Nexora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --success: #22c55e;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.7; color: var(--dark); background: var(--light); display: flex; margin: 0; scroll-behavior: smooth; }
+        
+        /* Sidebar */
+        nav { width: 280px; background: #fff; height: 100vh; position: fixed; border-right: 1px solid var(--border); padding: 30px 20px; overflow-y: auto; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { margin-bottom: 5px; }
+        nav ul li a { text-decoration: none; color: #64748b; font-weight: 500; display: block; padding: 10px 15px; border-radius: 8px; transition: 0.2s; }
+        nav ul li a:hover, nav ul li a.active { background: #eff6ff; color: var(--primary); }
+
+        /* Main Content */
+        main { margin-left: 280px; padding: 60px 80px; width: 100%; max-width: 1100px; }
+        section { margin-bottom: 60px; scroll-margin-top: 60px; }
+        .card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 35px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        
+        h1 { font-size: 2.8rem; margin-bottom: 10px; color: var(--dark); }
+        h2 { font-size: 1.8rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 25px; color: var(--dark); }
+        
+        .alert { padding: 15px 20px; border-left: 5px solid var(--primary); background: #f0f7ff; border-radius: 4px; margin: 20px 0; }
+        .alert-success { border-left-color: var(--success); background: #f0fdf4; }
+
+        pre { background: #0f172a; color: #f8fafc; padding: 20px; border-radius: 12px; overflow-x: auto; font-size: 0.9rem; position: relative; }
+        code { font-family: 'Fira Code', monospace; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th, table td { border: 1px solid var(--border); padding: 12px 15px; text-align: left; }
+        table th { background: #f1f5f9; }
+
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .feature-item { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><i class="fas fa-layer-group"></i> SaaS-Core</div>
+    <ul>
+        <li><a href="#welcome" class="active">Welcome</a></li>
+        <li><a href="#structure">Package Structure</a></li>
+        <li><a href="#installation">Getting Started</a></li>
+        <li><a href="#rtl">RTL & Localization</a></li>
+        <li><a href="#theming">Customization (Sass)</a></li>
+        <li><a href="#browser">Browser Support</a></li>
+        <li><a href="#changelog">Changelog</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="welcome">
+        <h1>SaaS-Core Documentation</h1>
+        <p class="lead">Premium Vanilla JS & Sass Dashboard Template by <strong>Nexora</strong>.</p>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> Thank you for purchasing SaaS-Core! This guide will help you set up and customize your dashboard.
+        </div>
+    </section>
+
+    <section id="structure" class="card">
+        <h2><i class="fas fa-folder-open"></i> Package Structure</h2>
+        <p>After unzipping the package, you will find the following folders:</p>
+        <pre><code>
+/SaaS-Core/
+├── /assets/         # Images, Icons, and Fonts
+├── /css/            # Compiled CSS files
+├── /js/             # Main Logic & Components
+├── /scss/           # Source Sass Files (Developer Ready)
+├── index.html       # Landing Page
+├── dashboard.html   # Main Dashboard
+└── documentation/   # This documentation file
+        </code></pre>
+    </section>
+
+    <section id="rtl" class="card">
+        <h2><i class="fas fa-align-right"></i> RTL Support</h2>
+        <p>SaaS-Core is fully optimized for RTL languages like Arabic. To enable RTL, simply add the <code>dir="rtl"</code> attribute to the <code>&lt;html&gt;</code> tag:</p>
+        <pre><code>&lt;html lang="ar" dir="rtl"&gt;</code></pre>
+        <div class="alert">
+            <strong>Note:</strong> Our CSS automatically detects the direction and flips the layout using logical properties.
+        </div>
+    </section>
+
+    <section id="browser" class="card">
+        <h2><i class="fas fa-globe"></i> Browser Support</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Browser</th>
+                    <th>Support</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chrome / Edge</td><td>Latest 2 Versions</td></tr>
+                <tr><td>Firefox</td><td>Latest 2 Versions</td></tr>
+                <tr><td>Safari (Mac/iOS)</td><td>Version 14+</td></tr>
+                <tr><td>Opera</td><td>Latest</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="changelog" class="card">
+        <h2><i class="fas fa-history"></i> Changelog</h2>
+        <p><strong>v1.0.0</strong> - May 2026</p>
+        <ul>
+            <li>Initial Release</li>
+            <li>Bento Grid Dashboard Layout</li>
+            <li>Full RTL & Dark Mode Support</li>
+            <li>Vanilla JS Components</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nexora Startup. Built by <a href="#">Nexore</a>.</p>
+    </footer>
+</main>
+
+<script>
+    // Simple script to handle active class in sidebar
+    const links = document.querySelectorAll('nav ul li a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
