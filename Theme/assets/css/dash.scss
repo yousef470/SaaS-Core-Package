@@ -8,22 +8,94 @@
   --bg-card: #ffffff;
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --border: #e2e8f0;
+  --border: #e2e8f0; // وحدنا الاسم هنا
   --sidebar-bg: #ffffff;
   --hero-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
   --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
   --radius: 20px;
 }
 
-/* Dark Mode Variables */
 body.dark {
-  --bg-main: #020617;
-  --bg-card: #0f172a;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.05);
-  --sidebar-bg: #0b1120;
-  --shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    --bg-main: #0b0e14;
+    --bg-card: #161b22;
+    --text-main: #ffffff;
+    --text-muted: #8b949e;
+    --border: #30363d; // لازم يتحدث هنا بنفس الاسم
+    --sidebar-bg: #161b22;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+
+/* =========================================
+   NAVBAR & ACTIONS (The Fix)
+========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between; // بيخلي العنوان في طرف والزراير في طرف
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    width: 100%;
+
+    h2 {
+        flex-shrink: 0; // بيمنع العنوان إنه يضغط على الزراير
+        font-size: 1.25rem;
+        color: var(--text-main);
+    }
+
+    .navbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px; // مسافة متناسقة بين كل Action item
+        margin-inline-start: auto;
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+    }
+}
+
+/* تعديل البروفايل عشان مياخدش مساحة عرض كبيرة ويبوظ الـ Navbar */
+.user-profile-sm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    padding: 4px 10px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    flex-shrink: 0; // مهم جداً عشان ميتكرمش في الشاشات الصغيرة
+
+    span {
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--text-main);
+        white-space: nowrap; // بيمنع كلمة Admin إنها تنزل سطر جديد
+    }
+
+    .avatar {
+        width: 28px;
+        height: 28px;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 800;
+        flex-shrink: 0;
+    }
 }
 
 /* Base Styles */
@@ -139,62 +211,6 @@ body {
   flex: 1;
   padding: 30px 40px;
   overflow-x: hidden;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-
-  h2 {
-    font-size: 24px;
-    font-weight: 700;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    button {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 10px 15px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-
-      &:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-      }
-    }
-  }
-}
-
-.user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg-card);
-  padding: 6px 15px;
-  border-radius: 50px;
-  border: 1px solid var(--border);
-
-  span {
-    font-weight: 600;
-  }
-
-  img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: var(--primary);
-  }
 }
 
 /* =========================================
@@ -796,5 +812,215 @@ footer {
 
   .chart {
     height: 220px;
+  }
+}
+
+/* =========================================
+   NAVBAR BUTTONS
+========================================= */
+
+.btn-icon,
+.btn-secondary-sm {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-main);
+  height: 42px;
+  min-width: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.btn-icon:hover,
+.btn-secondary-sm:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-icon i {
+  font-size: 18px;
+}
+
+/* Notifications */
+
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.notif-header {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.notif-empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px 10px;
+}
+
+.notif-empty-state i {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: block;
+}
+/* =========================================
+   RTL FIXES
+========================================= */
+
+body[dir="rtl"] {
+
+  .navbar {
+    flex-direction: row-reverse;
+  }
+
+  .navbar-actions {
+    margin-left: 0 !important;
+    margin-right: auto;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .sidebar .logo {
+    padding-left: 0;
+    padding-right: 15px;
+  }
+
+  .table-header {
+    flex-direction: row-reverse;
+  }
+
+  .client-top,
+  .client-bottom,
+  .card-top,
+  .hero,
+  .hero-stats {
+    direction: rtl;
+  }
+
+  .timeline {
+    padding-left: 0;
+    padding-right: 20px;
+  }
+
+  .timeline-item {
+    padding-left: 0;
+    padding-right: 20px;
+  }
+
+  .timeline-item .dot {
+    left: auto;
+    right: 0;
+  }
+
+  .timeline-item::before {
+    left: auto;
+    right: 4px;
+  }
+
+  table th,
+  table td {
+    text-align: right;
+  }
+
+  .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+/* =========================================
+   RTL FIXES (The Working Version)
+========================================= */
+
+body[dir="rtl"] {
+  direction: rtl;
+
+  .navbar {
+    flex-direction: row; // نثبت الـ row ونعتمد على الـ margin في التوزيع
+
+    .navbar-actions {
+      // الأهم: إلغاء المارجن القديم وتفعيل الجديد
+      margin-left: 0 !important;
+      margin-right: auto !important;
+      flex-direction: row; // يضمن بقاء الزراير جنب بعضها
+    }
+  }
+
+  .user-profile-sm {
+    flex-direction: row; // يضمن بقاء الـ Avatar جنب الاسم صح
+  }
+
+  /* إصلاح اتجاه العناصر الداخلية للـ Sidebar */
+  .sidebar {
+    border-right: none;
+    border-left: 1px solid var(--border);
+
+    nav a {
+      flex-direction: row; // يضمن ثبات أيقونة القائمة على اليمين
+    }
+  }
+
+  /* إصلاح اتجاه الـ Dropdown */
+  .dropdown-menu {
+    right: auto !important;
+    left: 0 !important;
+  }
+}
+
+/* =========================================
+   RTL MOBILE FIX
+========================================= */
+@media (max-width: 768px) {
+  body[dir="rtl"] .navbar {
+    align-items: flex-start; // محاذاة لليمين في الموبايل العربي
+
+    .navbar-actions {
+      width: 100%;
+      justify-content: flex-end; // دفع الزراير لليمين في الموبايل
+      margin-right: 0 !important;
+    }
   }
 }

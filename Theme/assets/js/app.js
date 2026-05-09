@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+
   /* =========================================
        1️⃣ DARK MODE
     ========================================= */
@@ -141,4 +143,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+});
+
+// إخفاء شاشة التحميل بعد اكتمال تحميل الصفحة
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    }
 });

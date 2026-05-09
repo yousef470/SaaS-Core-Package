@@ -1,26 +1,45 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SaaS-Core: A professional, high-performance dashboard & landing page boilerplate with native RTL support."
-    />
-    <!-- استبدال الاسم بـ SaaS-Core ليكون قالباً عاماً -->
-    <title>SaaS-Core | Professional Agency Dashboard Template</title>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SaaS Core | Next-Gen UI Kit & Dashboard</title>
 
-    <link rel="stylesheet" href="assets/css/app.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+      <!-- SEO & Social Tokens -->
+      <meta
+        name="description"
+        content="Premium HTML/SCSS Dashboard Template for SaaS."
+      />
+      <meta property="og:title" content="SaaS Core Template" />
+      <meta property="og:image" content="assets/img/og-preview.png" />
+
+      <!-- CSS Links -->
+      <link rel="stylesheet" href="assets/css/app.css" />
+      <!-- تأكد إن ده مسار ملف الـ CSS المجمع -->
+      <!-- Remix Icons (بما إنك مستخدمها) -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+        rel="stylesheet"
+      />
+    </head>
   </head>
   <body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <p
+          class="loader-text"
+          data-en="Loading SaaS Core..."
+          data-ar="جاري تحميل SaaS Core..."
+        >
+          Loading SaaS Core...
+        </p>
+      </div>
+    </div>
+    <!-- Preloader End --> 
+
     <div class="layout">
       <!-- Sidebar مع روابط عامة -->
       <aside class="sidebar">
@@ -52,8 +71,15 @@
 
         <div class="navbar-buttons">
           <button id="langToggle">EN</button>
-          <button id="themeToggle">🌙</button>
-          <button id="authBtn" class="auth-btn">Login</button>
+          <button
+            id="themeToggle"
+            class="btn-icon"
+            aria-label="Toggle Dark Mode"
+          >
+            <i class="ri-sun-line light-icon"></i>
+            <i class="ri-moon-line dark-icon"></i>
+          </button>
+          <button id="authBtn" class="auth-btn">login</button>
         </div>
       </header>
 
@@ -98,7 +124,7 @@
           <div class="pain-box">
             <h2
               data-en="Tired of Messy Code & Slow Frameworks?"
-              data-ar="تعبت من الكود المعقد والفريم-وركس البطيئة؟"
+              data-ar="تعبت من الكود المعقد والفريم وركس البطيئة؟"
             >
               Tired of Messy Code & Slow Frameworks?
             </h2>
@@ -115,8 +141,9 @@
         <!-- Features Grid -->
         <section id="features" class="section features-section reveal">
           <div class="grid">
+            <!-- Feature 1 -->
             <div class="feature-card fade-up">
-              <div class="icon"><i class="fas fa-language"></i></div>
+              <div class="icon"><i class="ri-translate-2"></i></div>
               <h3 data-en="Native RTL Support" data-ar="دعم كامل للعربية">
                 Native RTL Support
               </h3>
@@ -128,8 +155,9 @@
               </p>
             </div>
 
+            <!-- Feature 2 -->
             <div class="feature-card fade-up">
-              <div class="icon"><i class="fas fa-moon"></i></div>
+              <div class="icon"><i class="ri-moon-line"></i></div>
               <h3 data-en="Glassmorphism UI" data-ar="تصميم عصري">
                 Glassmorphism UI
               </h3>
@@ -141,14 +169,15 @@
               </p>
             </div>
 
+            <!-- Feature 3 -->
             <div class="feature-card fade-up">
-              <div class="icon"><i class="fas fa-code"></i></div>
+              <div class="icon"><i class="ri-code-s-slash-line"></i></div>
               <h3 data-en="Vanilla Stack" data-ar="كود نقي">Vanilla Stack</h3>
               <p
-                data-en="No React/Vue overhead. Just HTML, Tailwind CSS, and JS."
-                data-ar="بدون تعقيدات. فقط HTML و Tailwind و JS لسرعة قصوى."
+                data-en="Pure performance. Built with HTML, SCSS, and Vanilla JS."
+                data-ar="أداء فائق. مبني باستخدام HTML و SCSS و JS لنقاء الكود."
               >
-                No React/Vue overhead. Just HTML, Tailwind CSS, and JS.
+                Pure performance. Built with HTML, SCSS, and Vanilla JS.
               </p>
             </div>
           </div>
@@ -222,30 +251,31 @@
             </p>
           </div>
 
-          <div class="contact-grid-unique">
-            <!-- الجنب الشمال: الـ Info Card (كبرنا مساحتها) -->
-            <div class="contact-info-panel">
-              <div class="info-item-unique">
-                <div class="icon-box-unique">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div class="text-box-unique">
-                  <span>EMAIL US</span>
-                  <p>support@saascore.com</p>
-                </div>
-              </div>
-
-              <!-- مكان جاهز لو حبيت تضيف معلومة تانية مستقبلاً -->
-              <div class="info-item-unique">
-                <div class="icon-box-unique">
-                  <i class="fas fa-headset"></i>
-                </div>
-                <div class="text-box-unique">
-                  <span>SUPPORT</span>
-                  <p>24/7 Online Help</p>
-                </div>
-              </div>
+      <div class="contact-grid-unique">
+    <!-- الجنب الشمال: الـ Info Card -->
+    <div class="contact-info-panel">
+        <div class="info-item-unique">
+            <div class="icon-box-unique">
+                <!-- تم تغيير الأيقونة لـ Remix Icon -->
+                <i class="ri-mail-send-line"></i>
             </div>
+            <div class="text-box-unique">
+                <span data-en="EMAIL US" data-ar="راسلنا عبر البريد">EMAIL US</span>
+                <p>support@saascore.com</p>
+            </div>
+        </div>
+
+        <div class="info-item-unique">
+            <div class="icon-box-unique">
+                <!-- تم تغيير الأيقونة لـ Remix Icon -->
+                <i class="ri-customer-service-2-line"></i>
+            </div>
+            <div class="text-box-unique">
+                <span data-en="SUPPORT" data-ar="الدعم الفني">SUPPORT</span>
+                <p data-en="24/7 Online Help" data-ar="دعم متواصل 24/7">24/7 Online Help</p>
+            </div>
+        </div>
+    </div>
 
             <!-- الجنب اليمين: الفورم -->
             <form class="contact-form-unique">

@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SaaS-Core Dashboard</title>
 
-   <link rel="stylesheet" href="assets/css/dash.css">
+    <link rel="stylesheet" href="assets/css/dash.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -39,13 +41,11 @@
             <span data-en="Settings" data-ar="الإعدادات">Settings</span>
           </a>
 
-               <a href="index.html" class="home-btn">
+          <a href="index.html" class="home-btn">
             <i class="fas fa-house"></i>
             <span>Home</span>
           </a>
-         
         </nav>
-    
       </aside>
 
       <!-- Main -->
@@ -55,16 +55,41 @@
           <h2 data-en="Dashboard Overview" data-ar="نظرة عامة">
             Dashboard Overview
           </h2>
+<div class="navbar-actions">
+    <!-- زرار اللغة -->
+    <div class="action-item">
+        <button id="langToggle" class="btn-secondary-sm">AR</button>
+    </div>
 
-          <div class="nav-right">
-            <button id="langToggle">EN</button>
-            <button id="themeToggle"><i class="fas fa-moon"></i></button>
+    <!-- زرار الثيم -->
+    <div class="action-item">
+        <button id="themeToggle" class="btn-icon">
+            <i class="ri-moon-line"></i>
+        </button>
+    </div>
 
-            <div class="user">
-              <span>Admin</span>
-              <img src="https://ui-avatars.com/api/?name=Admin" />
+    <!-- التنبيهات -->
+    <div class="action-item notification-wrapper">
+        <button id="notif-btn" class="btn-icon">
+            <i class="ri-notification-3-line"></i>
+            <span class="notification-dot"></span>
+        </button>
+        
+        <div id="notif-dropdown" class="dropdown-menu">
+            <div class="notif-header">Notifications</div>
+            <div class="notif-empty-state">
+                <i class="ri-notification-off-line"></i>
+                <p>No new notifications</p>
             </div>
-          </div>
+        </div>
+    </div>
+
+    <!-- البروفايل (اللي ظاهر في الصورة عندك) -->
+    <div class="user-profile-sm">
+        <span>Admin</span>
+        <div class="avatar">AD</div>
+    </div>
+</div>
         </header>
 
         <!-- HERO -->
@@ -141,80 +166,77 @@
         </section>
 
         <!-- Table -->
-<div class="table"> <!-- الحاوية الأساسية -->
-    <div class="table-header">
-        <h3>أحدث العملاء</h3>
-        <input type="text" placeholder="بحث...">
-    </div>
-    <div class="clients-grid">
+        <div class="table">
+          <!-- الحاوية الأساسية -->
+          <div class="table-header">
+            <h3>أحدث العملاء</h3>
+            <input type="text" placeholder="بحث..." />
+          </div>
+          <div class="clients-grid">
+            <div class="client-card premium-card">
+              <div class="client-top">
+                <img src="assets/images/253.png" class="avatar" />
 
-  <div class="client-card premium-card">
-    
-    <div class="client-top">
-      <img src="assets/images/253.png" class="avatar">
-      
-      <div class="client-text">
-        <h4>Company A</h4>
-        <p>Active Client</p>
-      </div>
-    </div>
+                <div class="client-text">
+                  <h4>Company A</h4>
+                  <p>Active Client</p>
+                </div>
+              </div>
 
-    <div class="client-bottom">
-      <span class="badge premium">Premium</span>
-      <i class="fas fa-edit"></i>
-    </div>
+              <div class="client-bottom">
+                <span class="badge premium">Premium</span>
+                <i class="fas fa-edit"></i>
+              </div>
+            </div>
 
-  </div>
+            <div class="client-card premium-card">
+              <div class="client-top">
+                <img src="assets/images/251.png" class="avatar" />
 
-  <div class="client-card premium-card">
-    
-    <div class="client-top">
-      <img src="assets/images/251.png" class="avatar">
-      
-      <div class="client-text">
-        <h4>Developer X</h4>
-        <p>Pending Approval</p>
-      </div>
-    </div>
+                <div class="client-text">
+                  <h4>Developer X</h4>
+                  <p>Pending Approval</p>
+                </div>
+              </div>
 
-    <div class="client-bottom">
-      <span class="badge basic">Basic</span>
-      <i class="fas fa-edit"></i>
-    </div>
-
-  </div>
-
-</div>
-    
-</div>
+              <div class="client-bottom">
+                <span class="badge basic">Basic</span>
+                <i class="fas fa-edit"></i>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Activity -->
-      <section class="activity timeline">
+        <section class="activity timeline">
+          <h3>Recent Activity</h3>
 
-  <h3>Recent Activity</h3>
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <p>New client joined</p>
+              <span>2 min ago</span>
+            </div>
+          </div>
 
-  <div class="timeline-item">
-    <div class="dot"></div>
-    <div class="content">
-      <p>New client joined</p>
-      <span>2 min ago</span>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="dot"></div>
-    <div class="content">
-      <p>Payment received</p>
-      <span>10 min ago</span>
-    </div>
-  </div>
-
-</section>
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <p>Payment received</p>
+              <span>10 min ago</span>
+            </div>
+          </div>
+        </section>
 
         <footer>© 2026 SaaS-Core. Developed by Youssef</footer>
       </main>
     </div>
-   
+
+    <!-- 1. مكتبة الـ Charts أولاً -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+
+    <!-- 3. ملف الـ Dashboard JS (اللي فيه الـ Charts الخاصة بالصفحة دي بس) -->
     <script src="assets/js/dash.js"></script>
   </body>
 </html>
