@@ -279,29 +279,28 @@
 
       </div>
     </div>
+<div id="clientsSkeleton" class="clients-skeleton">
 
+  <div class="skeleton-card"></div>
+  <div class="skeleton-card"></div>
+  <div class="skeleton-card"></div>
+
+</div>
   </div>
 </div>
         <!-- Activity -->
-        <section class="activity timeline">
-          <h3>Recent Activity</h3>
+<section class="activity timeline">
 
-          <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content">
-              <p>New client joined</p>
-              <span>2 min ago</span>
-            </div>
-          </div>
+  <h3
+    data-en="Recent Activity"
+    data-ar="النشاط الأخير"
+  >
+    Recent Activity
+  </h3>
 
-          <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content">
-              <p>Payment received</p>
-              <span>10 min ago</span>
-            </div>
-          </div>
-        </section>
+  <div id="activityFeed"></div>
+
+</section>
 
         <footer>© 2026 SaaS-Core. Developed by Youssef</footer>
       </main>
@@ -402,5 +401,6 @@
 
     <!-- 3. ملف الـ Dashboard JS (اللي فيه الـ Charts الخاصة بالصفحة دي بس) -->
     <script src="assets/js/dash.js"></script>
+    <div id="toastContainer" class="toast-container"></div>
   </body>
 </html>
