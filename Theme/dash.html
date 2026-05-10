@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SaaS-Core Dashboard</title>
 
-    <link rel="stylesheet" href="assets/css/dash.css" />
+    <link rel="stylesheet" href="assets/scss/dash.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -55,41 +58,41 @@
           <h2 data-en="Dashboard Overview" data-ar="نظرة عامة">
             Dashboard Overview
           </h2>
-<div class="navbar-actions">
-    <!-- زرار اللغة -->
-    <div class="action-item">
-        <button id="langToggle" class="btn-secondary-sm">AR</button>
-    </div>
-
-    <!-- زرار الثيم -->
-    <div class="action-item">
-        <button id="themeToggle" class="btn-icon">
-            <i class="ri-moon-line"></i>
-        </button>
-    </div>
-
-    <!-- التنبيهات -->
-    <div class="action-item notification-wrapper">
-        <button id="notif-btn" class="btn-icon">
-            <i class="ri-notification-3-line"></i>
-            <span class="notification-dot"></span>
-        </button>
-        
-        <div id="notif-dropdown" class="dropdown-menu">
-            <div class="notif-header">Notifications</div>
-            <div class="notif-empty-state">
-                <i class="ri-notification-off-line"></i>
-                <p>No new notifications</p>
+          <div class="navbar-actions">
+            <!-- زرار اللغة -->
+            <div class="action-item">
+              <button id="langToggle" class="btn-secondary-sm">AR</button>
             </div>
-        </div>
-    </div>
 
-    <!-- البروفايل (اللي ظاهر في الصورة عندك) -->
-    <div class="user-profile-sm">
-        <span>Admin</span>
-        <div class="avatar">AD</div>
-    </div>
-</div>
+            <!-- زرار الثيم -->
+            <div class="action-item">
+              <button id="themeToggle" class="btn-icon">
+                <i class="ri-moon-line"></i>
+              </button>
+            </div>
+
+            <!-- التنبيهات -->
+            <div class="action-item notification-wrapper">
+              <button id="notif-btn" class="btn-icon">
+                <i class="ri-notification-3-line"></i>
+                <span class="notification-dot"></span>
+              </button>
+
+              <div id="notif-dropdown" class="dropdown-menu">
+                <div class="notif-header">Notifications</div>
+                <div class="notif-empty-state">
+                  <i class="ri-notification-off-line"></i>
+                  <p>No new notifications</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- البروفايل (اللي ظاهر في الصورة عندك) -->
+            <div class="user-profile-sm">
+              <span>Admin</span>
+              <div class="avatar">AD</div>
+            </div>
+          </div>
         </header>
 
         <!-- HERO -->
@@ -165,47 +168,120 @@
           </div>
         </section>
 
-        <!-- Table -->
-        <div class="table">
-          <!-- الحاوية الأساسية -->
-          <div class="table-header">
-            <h3>أحدث العملاء</h3>
-            <input type="text" placeholder="بحث..." />
-          </div>
-          <div class="clients-grid">
-            <div class="client-card premium-card">
-              <div class="client-top">
-                <img src="assets/images/253.png" class="avatar" />
+      <!-- Table -->
+<div class="table">
 
-                <div class="client-text">
-                  <h4>Company A</h4>
-                  <p>Active Client</p>
-                </div>
-              </div>
+  <h3
+    data-en="Latest Clients"
+    data-ar="أحدث العملاء"
+  >
+    Latest Clients
+  </h3>
 
-              <div class="client-bottom">
-                <span class="badge premium">Premium</span>
-                <i class="fas fa-edit"></i>
-              </div>
-            </div>
+  <!-- Actions -->
+  <div class="table-actions">
 
-            <div class="client-card premium-card">
-              <div class="client-top">
-                <img src="assets/images/251.png" class="avatar" />
+    <div class="search-box">
+      <i class="ri-search-line"></i>
 
-                <div class="client-text">
-                  <h4>Developer X</h4>
-                  <p>Pending Approval</p>
-                </div>
-              </div>
+      <input
+        type="text"
+        data-en-placeholder="Search clients..."
+        data-ar-placeholder="ابحث عن عميل..."
+        placeholder="Search clients..."
+      />
+    </div>
 
-              <div class="client-bottom">
-                <span class="badge basic">Basic</span>
-                <i class="fas fa-edit"></i>
-              </div>
-            </div>
-          </div>
+    <button id="openModal" class="btn-primary">
+      <i class="ri-add-line"></i>
+
+      <span
+        data-en="Add Client"
+        data-ar="إضافة عميل"
+      >
+        Add Client
+      </span>
+    </button>
+
+  </div>
+
+  <!-- Clients -->
+  <div class="clients-grid">
+
+    <div class="client-card premium-card">
+      <div class="client-top">
+
+        <img
+          src="assets/images/253.png"
+          class="avatar"
+        />
+
+        <div class="client-text">
+          <h4>Company A</h4>
+
+          <p
+            data-en="Active Client"
+            data-ar="عميل نشط"
+          >
+            Active Client
+          </p>
         </div>
+
+      </div>
+
+      <div class="client-bottom">
+
+        <span
+          class="badge premium"
+          data-en="Premium"
+          data-ar="مميز"
+        >
+          Premium
+        </span>
+
+        <i class="fas fa-edit"></i>
+
+      </div>
+    </div>
+
+    <div class="client-card premium-card">
+      <div class="client-top">
+
+        <img
+          src="assets/images/251.png"
+          class="avatar"
+        />
+
+        <div class="client-text">
+          <h4>Developer X</h4>
+
+          <p
+            data-en="Pending Approval"
+            data-ar="بانتظار الموافقة"
+          >
+            Pending Approval
+          </p>
+        </div>
+
+      </div>
+
+      <div class="client-bottom">
+
+        <span
+          class="badge basic"
+          data-en="Basic"
+          data-ar="أساسي"
+        >
+          Basic
+        </span>
+
+        <i class="fas fa-edit"></i>
+
+      </div>
+    </div>
+
+  </div>
+</div>
         <!-- Activity -->
         <section class="activity timeline">
           <h3>Recent Activity</h3>
@@ -230,11 +306,99 @@
         <footer>© 2026 SaaS-Core. Developed by Youssef</footer>
       </main>
     </div>
+   
+    <div id="clientModal" class="modal">
+  <div class="modal-content">
 
+    <div class="modal-header">
+      <h3
+        data-en="Add Client"
+        data-ar="إضافة عميل"
+      >
+        Add Client
+      </h3>
+
+      <button class="close-modal" id="closeModal">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <input
+        type="text"
+        id="clientName"
+        data-en-placeholder="Client Name"
+        data-ar-placeholder="اسم العميل"
+        placeholder="Client Name"
+      />
+
+      <input
+        type="email"
+        id="clientEmail"
+        data-en-placeholder="Client Email"
+        data-ar-placeholder="بريد العميل"
+        placeholder="Client Email"
+      />
+
+      <input
+        type="text"
+        id="clientStatus"
+        data-en-placeholder="Client Status"
+        data-ar-placeholder="حالة العميل"
+        placeholder="Client Status"
+      />
+
+      <select id="clientType">
+        <option
+          value="premium"
+          data-en="Premium"
+          data-ar="مميز"
+        >
+          Premium
+        </option>
+
+        <option
+          value="basic"
+          data-en="Basic"
+          data-ar="أساسي"
+        >
+          Basic
+        </option>
+      </select>
+
+      <input
+        type="text"
+        id="clientAvatar"
+        data-en-placeholder="Avatar Image URL"
+        data-ar-placeholder="رابط صورة العميل"
+        placeholder="Avatar Image URL"
+      />
+
+    </div>
+
+    <div class="modal-actions">
+      <button
+        class="btn-primary"
+        id="saveClientBtn"
+      >
+        <i class="ri-save-line"></i>
+
+        <span
+          data-en="Save Client"
+          data-ar="حفظ العميل"
+        >
+          Save Client
+        </span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+</div>
     <!-- 1. مكتبة الـ Charts أولاً -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    
 
     <!-- 3. ملف الـ Dashboard JS (اللي فيه الـ Charts الخاصة بالصفحة دي بس) -->
     <script src="assets/js/dash.js"></script>

@@ -12,7 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (themeToggle) {
     const updateThemeIcon = () => {
-      themeToggle.textContent = body.classList.contains("dark") ? "☀️" : "🌙";
+      const lightIcon = themeToggle.querySelector(".light-icon");
+const darkIcon = themeToggle.querySelector(".dark-icon");
+
+if (body.classList.contains("dark")) {
+  lightIcon.style.display = "block";
+  darkIcon.style.display = "none";
+} else {
+  lightIcon.style.display = "none";
+  darkIcon.style.display = "block";
+}
     };
 
     updateThemeIcon();
@@ -154,4 +163,14 @@ window.addEventListener('load', () => {
             preloader.style.display = 'none';
         }, 500);
     }
+});
+
+
+const contactForm = document.querySelector(".contact-form-unique");
+
+contactForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  showToast("Message sent successfully!");
+  contactForm.reset();
 });
