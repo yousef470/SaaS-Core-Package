@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Nexora Checkout</title>
+
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <a href="index.html" class="logo">SaaS<span>Core</span></a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="langToggle">AR</button>
+
+        <button id="themeToggle">🌙</button>
+      </div>
+    </header>
+
+    <!-- CHECKOUT -->
+    <section class="checkout-section">
+      <!-- LEFT -->
+      <div class="checkout-form card">
+        <h2 data-en="Complete Your Purchase" data-ar="إتمام عملية الشراء">
+          Complete Your Purchase
+        </h2>
+        <!-- NAME -->
+        <div class="input-group">
+          <label data-en="Full Name" data-ar="الاسم الكامل"> Full Name </label>
+
+          <input
+            type="text"
+            id="checkoutName"
+            placeholder="John Doe"
+            data-en-placeholder="John Doe"
+            data-ar-placeholder="الاسم الكامل"
+          />
+        </div>
+
+        <!-- EMAIL -->
+        <div class="input-group">
+          <label data-en="Email Address" data-ar="البريد الإلكتروني">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="checkoutEmail"
+            placeholder="example@email.com"
+            data-en-placeholder="example@email.com"
+            data-ar-placeholder="البريد الإلكتروني"
+          />
+        </div>
+
+        <!-- COMPANY -->
+        <div class="input-group">
+          <label data-en="Company Name" data-ar="اسم الشركة">
+            Company Name
+          </label>
+
+          <input
+            type="text"
+            id="checkoutCompany"
+            placeholder="Your Company"
+            data-en-placeholder="Your Company"
+            data-ar-placeholder="اسم الشركة"
+          />
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="input-group">
+          <label data-en="Payment Method" data-ar="طريقة الدفع">
+            Payment Method
+          </label>
+
+          <div class="payment-methods">
+            <div class="payment active">
+              <i class="fa-brands fa-cc-visa"></i>
+
+              <span data-en="Card" data-ar="بطاقة"> Card </span>
+            </div>
+
+            <div class="payment">
+              <i class="fa-brands fa-paypal"></i>
+
+              <span data-en="PayPal" data-ar="بايبال"> PayPal </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUTTON -->
+        <button
+          class="checkout-btn"
+          data-en="Complete Checkout"
+          data-ar="إتمام الدفع"
+        >
+          Complete Checkout
+        </button>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="checkout-summary card">
+        <h2 data-en="Order Summary" data-ar="ملخص الطلب">Order Summary</h2>
+
+        <!-- PLAN -->
+        <div class="summary-plan">
+          <div>
+            <h3 id="planName">Pro Plan</h3>
+
+            <span data-en="Lifetime Access" data-ar="وصول مدى الحياة">
+              Lifetime Access
+            </span>
+          </div>
+
+          <h2 id="planPrice">$49</h2>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="summary-features">
+          <div class="feature">
+            <i class="fas fa-check"></i>
+
+            <span data-en="Unlimited Clients" data-ar="عملاء غير محدودين">
+              Unlimited Clients
+            </span>
+          </div>
+
+          <div class="feature">
+            <i class="fas fa-check"></i>
+
+            <span data-en="Full Dashboard" data-ar="لوحة تحكم كاملة">
+              Full Dashboard
+            </span>
+          </div>
+
+          <div class="feature">
+            <i class="fas fa-check"></i>
+
+            <span data-en="Analytics" data-ar="التحليلات"> Analytics </span>
+          </div>
+
+          <div class="feature">
+            <i class="fas fa-check"></i>
+
+            <span data-en="Premium Support" data-ar="دعم مميز">
+              Premium Support
+            </span>
+          </div>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total-box">
+          <span data-en="Total" data-ar="الإجمالي"> Total </span>
+
+          <h2 id="totalPrice">$49</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT MODAL -->
+
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+    <!-- CARD PAYMENT MODAL (المودال بتاعك القديم) -->
+    <div class="payment-modal" id="paymentModal">
+      <div class="modal-box">
+        <div class="modal-top">
+          <h2 data-en="Payment Details" data-ar="بيانات الدفع">
+            Payment Details
+          </h2>
+          <button id="closeModal">✕</button>
+        </div>
+        <div class="input-group">
+          <label data-en="Card Number" data-ar="رقم البطاقة">Card Number</label>
+          <input type="text" placeholder="1234 5678 9012 3456" />
+        </div>
+        <div class="card-row">
+          <div class="input-group">
+            <label data-en="Expiry Date" data-ar="تاريخ الانتهاء"
+              >Expiry Date</label
+            >
+            <input type="text" placeholder="MM/YY" />
+          </div>
+          <div class="input-group">
+            <label data-en="CVV" data-ar="رمز الحماية">CVV</label>
+            <input type="text" placeholder="123" />
+          </div>
+        </div>
+        <button class="pay-btn" id="payNowBtn">
+          <span data-en="Pay Now" data-ar="ادفع الآن">Pay Now</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. PAYPAL MODAL (المودال الجديد اللي طلبته) -->
+    <div class="payment-modal" id="paypalModal">
+      <div class="modal-box">
+        <div class="modal-top">
+          <h2 data-en="Pay with PayPal" data-ar="الدفع عبر بايبال">
+            Pay with PayPal
+          </h2>
+          <button id="closePaypalModal">✕</button>
+        </div>
+        <div id="paypal-button-container" style="margin-top: 20px"></div>
+      </div>
+    </div>
+
+    <script src="assets/js/checkout.js"></script>
+  </body>
+</html>

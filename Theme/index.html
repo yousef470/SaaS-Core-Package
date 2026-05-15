@@ -1,28 +1,27 @@
 <!doctype html>
 <html lang="en">
-  
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>SaaS Core | Next-Gen UI Kit & Dashboard</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SaaS Core | Next-Gen UI Kit & Dashboard</title>
 
-      <!-- SEO & Social Tokens -->
-      <meta
-        name="description"
-        content="Premium HTML/SCSS Dashboard Template for SaaS."
-      />
-      <meta property="og:title" content="SaaS Core Template" />
-      <meta property="og:image" content="assets/img/og-preview.png" />
+    <!-- SEO & Social Tokens -->
+    <meta
+      name="description"
+      content="Premium HTML/SCSS Dashboard Template for SaaS."
+    />
+    <meta property="og:title" content="SaaS Core Template" />
+    <meta property="og:image" content="assets/img/og-preview.png" />
 
-      <!-- CSS Links -->
-      <link rel="stylesheet" href="assets/css/app.css" />
-      <!-- تأكد إن ده مسار ملف الـ CSS المجمع -->
-      <!-- Remix Icons (بما إنك مستخدمها) -->
-      <link
-        href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
-        rel="stylesheet"
-      />
-    </head>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="assets/scss/app.css" />
+    <!-- تأكد إن ده مسار ملف الـ CSS المجمع -->
+    <!-- Remix Icons (بما إنك مستخدمها) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
 
   <body>
     <!-- Preloader Start -->
@@ -38,7 +37,7 @@
         </p>
       </div>
     </div>
-    <!-- Preloader End --> 
+    <!-- Preloader End -->
 
     <div class="layout">
       <!-- Sidebar مع روابط عامة -->
@@ -183,62 +182,147 @@
           </div>
         </section>
 
-        <!-- Pricing Section: جعلتها جاهزة لبيع القالب نفسه -->
+               <!-- Pricing Section -->
         <section id="pricing" class="section pricing-section reveal">
-          <h2 data-en="Choose Your License" data-ar="اختر رخصة الاستخدام">
-            Choose Your License
+          <h2
+            data-en="Simple & Flexible Pricing"
+            data-ar="خطط تسعير بسيطة ومرنة"
+          >
+            Simple & Flexible Pricing
           </h2>
+
           <div class="pricing-grid">
+            <!-- Starter -->
             <div class="card pricing-card fade-up">
-              <h3 data-en="Standard" data-ar="الرخصة العادية">Standard</h3>
-              <p class="price">$49</p>
+              <h3 data-en="Starter" data-ar="الخطة الأساسية">Starter</h3>
+
+              <p class="price">
+                $19<span data-en="/month" data-ar="/شهريًا">/month</span>
+              </p>
+
               <ul>
-                <li data-en="Single Project Use" data-ar="استخدام لمشروع واحد">
-                  Single Project Use
+                <li
+                  data-en="Manage up to 10 clients"
+                  data-ar="إدارة حتى 10 عملاء"
+                >
+                  Manage up to 10 clients
                 </li>
-                <li data-en="Full Source Code" data-ar="الكود المصدري الكامل">
-                  Full Source Code
+
+                <li
+                  data-en="Basic project tracking"
+                  data-ar="متابعة المشاريع بشكل أساسي"
+                >
+                  Basic project tracking
                 </li>
-                <li data-en="Lifetime Updates" data-ar="تحديثات مدى الحياة">
-                  Lifetime Updates
+
+                <li data-en="Simple dashboard view" data-ar="لوحة تحكم بسيطة">
+                  Simple dashboard view
                 </li>
               </ul>
-              <button
+
+              <a
+                href="checkout.html?plan=starter"
                 class="btn-primary"
-                data-en="Buy Now"
-                data-ar="اشتري الآن"
+                data-en="Get Started"
+                data-ar="ابدأ الآن"
               >
-                Buy Now
-              </button>
+                Get Started
+              </a>
             </div>
 
+            <!-- Pro -->
             <div class="card pricing-card highlight fade-up">
-              <h3 data-en="Extended" data-ar="الرخصة الممتدة">Extended</h3>
-              <p class="price">$199</p>
+
+              <p class="Most-popular" >Most-popular</p>
+
+
+              <h3 data-en="Pro" data-ar="الخطة الاحترافية">Pro</h3>
+
+              <p class="price">
+                $49<span data-en="/month" data-ar="/شهريًا">/month</span>
+              </p>
+
               <ul>
-                <li data-en="Unlimited Projects" data-ar="مشاريع غير محدودة">
-                  Unlimited Projects
+                <li data-en="Unlimited clients" data-ar="عملاء غير محدودين">
+                  Unlimited clients
                 </li>
+
                 <li
-                  data-en="Resell as End Product"
-                  data-ar="إعادة البيع كمنتج نهائي"
+                  data-en="Full project management"
+                  data-ar="إدارة كاملة للمشاريع"
                 >
-                  Resell as End Product
+                  Full project management
                 </li>
-                <li data-en="Priority Support" data-ar="دعم فني ذو أولوية">
-                  Priority Support
+
+                <li
+                  data-en="Advanced dashboard & analytics"
+                  data-ar="لوحة تحكم وتحليلات متقدمة"
+                >
+                  Advanced dashboard & analytics
+                </li>
+
+                <li data-en="Priority support" data-ar="دعم ذو أولوية">
+                  Priority support
                 </li>
               </ul>
-              <button
+
+              <a
+                href="checkout.html?plan=pro"
                 class="btn-primary"
-                data-en="Get Extended"
-                data-ar="احصل على الممتدة"
+                data-en="Upgrade to Pro"
+                data-ar="الترقية إلى الاحترافي"
               >
-                Get Extended
-              </button>
+                Upgrade to Pro
+              </a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="card pricing-card fade-up">
+              <h3 data-en="Enterprise" data-ar="خطة الشركات">Enterprise</h3>
+
+              <p class="price" class="price custom-price" data-en="Custom Pricing" data-ar="تسعير مخصص">
+                Custom Pricing
+              </p>
+            
+              <ul>
+                <li
+                  data-en="Everything in Pro"
+                  data-ar="كل مميزات الخطة الاحترافية"
+                >
+                  Everything in Pro
+                </li>
+
+                <li
+                  data-en="Custom features & integrations"
+                  data-ar="مميزات وتكاملات مخصصة"
+                >
+                  Custom features & integrations
+                </li>
+
+                <li data-en="Dedicated support" data-ar="دعم مخصص">
+                  Dedicated support
+                </li>
+
+                <li
+                  data-en="Team & multi-user access"
+                  data-ar="إدارة فريق وصلاحيات متعددة"
+                >
+                  Team & multi-user access
+                </li>
+              </ul>
+
+              <a
+                href="checkout.html?plan=enterprise"
+                class="btn-primary"
+                data-en="Contact Sales"
+                data-ar="تواصل مع المبيعات"
+              >
+                Contact Sales
+              </a>
             </div>
           </div>
         </section>
+
         <!-- Section Contact: Saas-core Edition -->
         <section id="contact" class="contact-section-unique reveal">
           <div class="contact-header-unique">
@@ -251,31 +335,35 @@
             </p>
           </div>
 
-      <div class="contact-grid-unique">
-    <!-- الجنب الشمال: الـ Info Card -->
-    <div class="contact-info-panel">
-        <div class="info-item-unique">
-            <div class="icon-box-unique">
-                <!-- تم تغيير الأيقونة لـ Remix Icon -->
-                <i class="ri-mail-send-line"></i>
-            </div>
-            <div class="text-box-unique">
-                <span data-en="EMAIL US" data-ar="راسلنا عبر البريد">EMAIL US</span>
-                <p>support@saascore.com</p>
-            </div>
-        </div>
+          <div class="contact-grid-unique">
+            <!-- الجنب الشمال: الـ Info Card -->
+            <div class="contact-info-panel">
+              <div class="info-item-unique">
+                <div class="icon-box-unique">
+                  <!-- تم تغيير الأيقونة لـ Remix Icon -->
+                  <i class="ri-mail-send-line"></i>
+                </div>
+                <div class="text-box-unique">
+                  <span data-en="EMAIL US" data-ar="راسلنا عبر البريد"
+                    >EMAIL US</span
+                  >
+                  <p>support@saascore.com</p>
+                </div>
+              </div>
 
-        <div class="info-item-unique">
-            <div class="icon-box-unique">
-                <!-- تم تغيير الأيقونة لـ Remix Icon -->
-                <i class="ri-customer-service-2-line"></i>
+              <div class="info-item-unique">
+                <div class="icon-box-unique">
+                  <!-- تم تغيير الأيقونة لـ Remix Icon -->
+                  <i class="ri-customer-service-2-line"></i>
+                </div>
+                <div class="text-box-unique">
+                  <span data-en="SUPPORT" data-ar="الدعم الفني">SUPPORT</span>
+                  <p data-en="24/7 Online Help" data-ar="دعم متواصل 24/7">
+                    24/7 Online Help
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="text-box-unique">
-                <span data-en="SUPPORT" data-ar="الدعم الفني">SUPPORT</span>
-                <p data-en="24/7 Online Help" data-ar="دعم متواصل 24/7">24/7 Online Help</p>
-            </div>
-        </div>
-    </div>
 
             <!-- الجنب اليمين: الفورم -->
             <form class="contact-form-unique">

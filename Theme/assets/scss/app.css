@@ -15,6 +15,12 @@
   --hero-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
   --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
   --radius: 20px;
+  --primary-glow: rgba(99, 102, 241, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --btn-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+  --btn-shadow-hover: 0 18px 35px rgba(99, 102, 241, 0.4);
 }
 
 /* DARK MODE */
@@ -28,6 +34,12 @@ body.dark {
   --primary: #818cf8;
   --primary-dark: #6366f1;
   --accent: #22d3ee;
+  --primary-glow: rgba(129, 140, 248, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  --btn-shadow: 0 10px 30px rgba(129, 140, 248, 0.25);
+  --btn-shadow-hover: 0 20px 40px rgba(129, 140, 248, 0.45);
 }
 
 body {
@@ -36,7 +48,9 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.feature-card, .sidebar, .navbar {
+.feature-card,
+.sidebar,
+.navbar {
   background-color: var(--bg-card);
   border-color: var(--border);
   color: var(--text-main);
@@ -57,24 +71,21 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
   line-height: 1.6;
-  transition: background 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
-  /* RTL Support Logic */
 }
-body[dir=rtl] {
-  font-family: "Inter", sans-serif;
-}
+
+/* RTL & LTR Support Logic */
 body[dir=rtl] .menu-btn {
   margin-right: 0;
   margin-left: 20px;
 }
+
 body[dir=rtl] .sidebar {
   right: 20px;
   transform: translateX(120%);
 }
+
 body[dir=ltr] .sidebar {
   left: 20px;
   transform: translateX(-120%);
@@ -92,11 +103,11 @@ body[dir=ltr] .sidebar {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--bg-main); /* هيتغير تلقائي مع الـ Dark Mode لو ظبطنا الـ variables */
+  background-color: var(--bg-main);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000; /* أعلى حاجة في الصفحة */
+  z-index: 10000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -108,7 +119,7 @@ body[dir=ltr] .sidebar {
   width: 50px;
   height: 50px;
   border: 3px solid rgba(52, 152, 219, 0.1);
-  border-top: 3px solid #3498db; /* لون البراند بتاعك */
+  border-top: 3px solid #3498db;
   border-radius: 50%;
   margin: 0 auto 15px;
   animation: spin 1s linear infinite;
@@ -129,14 +140,13 @@ body[dir=ltr] .sidebar {
     transform: rotate(360deg);
   }
 }
-/* حالة الإخفاء */
 #preloader.fade-out {
   opacity: 0;
   visibility: hidden;
 }
 
 /* =========================================
-   3️⃣ NAVIGATION (Glassmorphism)
+   3️⃣ NAVIGATION
    ========================================= */
 .navbar {
   position: fixed;
@@ -154,29 +164,36 @@ body[dir=ltr] .sidebar {
   border-bottom: 1px solid var(--border);
   z-index: 1100;
 }
+
 .navbar .nav-left {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .navbar .logo {
   font-size: 1.4rem;
   font-weight: 800;
   color: var(--text-main);
 }
+
 .navbar .links {
   display: flex;
   gap: 25px;
 }
+
 .navbar .links a {
   text-decoration: none;
   color: var(--text-muted);
   font-size: 0.9rem;
   transition: 0.3s;
 }
-.navbar .links a:hover {
+
+.navbar .links a:hover,
+.navbar .links a.active {
   color: var(--primary);
 }
+
 .navbar .navbar-buttons {
   display: flex;
   align-items: center;
@@ -186,7 +203,7 @@ body[dir=ltr] .sidebar {
 #langToggle,
 #themeToggle {
   background: var(--primary);
-  border: var(--border);
+  border: 1px solid var(--border);
   color: white;
   padding: 6px 10px;
   border-radius: 8px;
@@ -214,6 +231,7 @@ body[dir=ltr] .sidebar {
   transition: all 0.3s ease;
   margin-right: 20px;
 }
+
 .menu-btn:hover {
   background: rgba(99, 102, 241, 0.2);
   border-color: #6366f1;
@@ -242,15 +260,14 @@ body[dir=ltr] .sidebar {
   pointer-events: none;
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
+
 .sidebar.open {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0) !important;
   visibility: visible;
 }
-.sidebar {
-  /* Sidebar Links */
-}
+
 .sidebar a {
   display: flex;
   align-items: center;
@@ -263,6 +280,7 @@ body[dir=ltr] .sidebar {
   font-weight: 500;
   transition: 0.3s;
 }
+
 .sidebar a:hover {
   background: rgba(99, 102, 241, 0.1);
   color: white;
@@ -277,6 +295,7 @@ body[dir=ltr] .sidebar {
   display: none;
   z-index: 998;
 }
+
 .overlay.active {
   display: block;
 }
@@ -290,10 +309,6 @@ body[dir=ltr] .sidebar {
 .btn-secondary:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(99, 102, 241, 0.25);
-}
-
-.links a.active {
-  color: var(--primary);
 }
 
 /* =========================================
@@ -315,12 +330,14 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 .hero-section h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
 }
+
 .hero-section p {
   max-width: 700px;
   font-size: 1.2rem;
@@ -356,8 +373,9 @@ main {
    ========================================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
+  width: 100%;
 }
 
 .pain-box {
@@ -376,10 +394,12 @@ main {
   transition: all 0.3s ease;
   box-shadow: var(--shadow);
 }
+
 .feature-card:hover {
   border-color: var(--primary);
   transform: translateY(-5px);
 }
+
 .feature-card .icon {
   font-size: 2rem;
   color: var(--primary);
@@ -387,130 +407,175 @@ main {
 }
 
 /* =========================================
-   7️⃣ PRICING SECTION
+   7️⃣ PRICING SECTION - النسخة المستقرة للموبايل والويب
    ========================================= */
 .pricing-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 5%;
   text-align: center;
-  background: radial-gradient(circle at center, var(--primary-glow), transparent);
+  padding: 80px 5%;
+  background-color: var(--bg-main);
 }
+
 .pricing-section h2 {
+  font-size: clamp(28px, 4vw, 48px);
   margin-bottom: 60px;
-  font-size: clamp(30px, 5vw, 50px);
+  color: var(--text-main);
   font-weight: 800;
 }
 
+/* شبكة عرض الكروت الأساسية (شاشات الكمبيوتر الكبيرة) */
 .pricing-grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 30px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: nowrap;
+  align-items: stretch; /* تجعل جميع الكروت بنفس الارتفاع تلقائياً */
 }
 
 .pricing-card {
-  flex: 1;
-  min-width: 320px;
-  max-width: 400px;
-  border-radius: 30px;
-  background: var(--bg-card);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  padding: 50px 40px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  padding: 40px 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.pricing-card:hover {
-  transform: translateY(-15px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: #6366f1;
-}
-.pricing-card.highlight {
-  border: 2px solid #6366f1 !important;
-  transform: scale(1.05);
-  box-shadow: 0 0 40px var(--primary-glow);
-  z-index: 2;
-}
-.pricing-card.highlight:hover {
-  transform: translateY(-15px) scale(1.05);
-}
-.pricing-card.highlight::before {
-  content: "Most Popular";
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary);
-  color: white;
-  padding: 5px 20px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-}
-.pricing-card.highlight .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  border: none;
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-}
-.pricing-card.highlight .btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
-}
-.pricing-card .btn-primary {
-  width: 100%;
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
-}
-.pricing-card ul {
-  list-style: none;
-  margin: 30px 0;
-  padding: 0;
-  text-align: start;
-}
-.pricing-card li {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text-muted);
-}
-.pricing-card li::before {
-  content: "✓";
-  color: var(--primary);
-  font-weight: bold;
+  text-align: center;
+  position: relative;
 }
 
-.price {
-  font-size: 4rem;
+.pricing-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.pricing-card .price {
+  font-size: 32px;
   font-weight: 800;
   margin: 15px 0;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-.price span {
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-left: 5px;
+  color: var(--text-main);
 }
 
+.pricing-card .price span {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  text-align: left;
+  flex-grow: 1; /* يدفع زر الاشتراك ليكون دائماً أسفل الكارت */
+}
+
+.pricing-card ul li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-card ul li::before {
+  content: "\f65d";
+  font-family: "remixicon";
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.pricing-card .btn-primary {
+  margin-top: auto; /* يضمن محاذاة الأزرار على خط واحد */
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: var(--btn-shadow);
+}
+
+.pricing-card .btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--btn-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* تأثير الكارت المميز Highlight */
+.pricing-card.highlight {
+  border: 2px solid var(--primary);
+  box-shadow: var(--card-shadow);
+  transform: scale(1.03);
+  z-index: 5;
+}
+
+.pricing-card:hover:not(.highlight) {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+}
+
+/* شارة الأكثر شيوعاً البنفسجية */
+.pricing-card .Most-popular {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #a855f7;
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+}
+
+/* دعم اتجاه اللغة العربية */
+[dir=rtl] .pricing-card ul {
+  text-align: right;
+}
+
+/* =========================================
+   📱 تجاوب قسم الأسعار (Responsive Queries)
+   ========================================= */
+/* شاشات اللاب توب الصغيرة والتابلت العريض */
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* كارتين في الصف */
+    max-width: 750px;
+    gap: 25px;
+  }
+  .pricing-card.highlight {
+    transform: scale(1); /* إلغاء التكبير لمنع تداخل الكروت */
+  }
+}
+/* شاشات الموبايل والتابلت الصغير (إصلاح شامل) */
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 60px 20px;
+  }
+  .pricing-section h2 {
+    margin-bottom: 50px;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr !important; /* كارت واحد عريض لكل صف يملأ الشاشة */
+    gap: 35px; /* مسافة مريحة بين الكروت الرأسية */
+    max-width: 400px; /* تحجيم الكارت ليكون شكله أنيق */
+  }
+  .pricing-card {
+    padding: 35px 20px; /* تقليص الحواف الداخلية ليناسب الموبايل */
+  }
+  .pricing-card.highlight {
+    transform: scale(1);
+  }
+}
 /* =========================================
    8️⃣ CONTACT SECTION
    ========================================= */
@@ -518,6 +583,7 @@ main {
   padding: 100px 5%;
   width: 100%;
 }
+
 .contact-section-unique h2 {
   font-size: 40px;
 }
@@ -572,6 +638,7 @@ main {
   letter-spacing: 1px;
   margin-bottom: 5px;
 }
+
 .text-box-unique p {
   font-weight: 600;
   font-size: 1.1rem;
@@ -584,6 +651,7 @@ main {
   flex-direction: column;
   gap: 20px;
 }
+
 .contact-form-unique input,
 .contact-form-unique textarea {
   width: 100%;
@@ -594,6 +662,7 @@ main {
   color: var(--text-main);
   transition: all 0.3s ease;
 }
+
 .contact-form-unique input:focus,
 .contact-form-unique textarea:focus {
   border-color: var(--primary);
@@ -605,6 +674,7 @@ main {
   display: flex;
   gap: 20px;
 }
+
 .input-group-unique input {
   flex: 1;
 }
@@ -621,6 +691,7 @@ main {
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 .btn-submit-unique:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
@@ -634,6 +705,7 @@ main {
   transform: translateY(30px);
   transition: 1s ease-out;
 }
+
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
@@ -642,16 +714,21 @@ main {
 /* =========================================
    🔟 RESPONSIVE DESIGN (Media Queries)
    ========================================= */
-/* Desktop & Tablets */
+@media (max-width: 1100px) {
+  .pricing-section .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    max-width: 800px;
+  }
+  .pricing-card.highlight {
+    transform: scale(1);
+  }
+}
 @media (max-width: 992px) {
-  .links {
+  .navbar .links {
     display: none;
   }
   .pricing-grid {
     flex-wrap: wrap;
-  }
-  .pricing-card.highlight {
-    transform: scale(1);
   }
 }
 @media (max-width: 950px) {
@@ -670,16 +747,14 @@ main {
   .navbar {
     padding: 0 15px;
   }
-  .logo {
+  .navbar .logo {
     font-size: 1.2rem;
   }
-  .navbar-buttons {
+  .navbar .navbar-buttons {
     gap: 6px;
   }
 }
-/* Mobile Devices */
 @media (max-width: 768px) {
-  /* Navbar Actions Fix */
   .nav-actions,
   .theme-switch,
   .lang-switch,
@@ -693,7 +768,16 @@ main {
     padding: 20px;
     border-top: 1px solid #eee;
   }
-  /* Contact Mobile Fix */
+  .pricing-section {
+    padding: 60px 20px;
+  }
+  .pricing-section .grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+  .pricing-card {
+    padding: 40px 25px;
+  }
   .contact-section-unique {
     padding: 60px 20px;
   }
@@ -738,8 +822,6 @@ main {
     font-size: 0.95rem;
     border-radius: 12px;
   }
-}
-@media (max-width: 768px) {
   .navbar {
     padding: 0 15px;
   }
@@ -772,6 +854,7 @@ a:focus {
   justify-content: space-between;
   align-items: center;
 }
+
 .modal-header h3 {
   font-size: 24px;
   font-weight: 700;
@@ -790,9 +873,11 @@ a:focus {
   align-items: center;
   justify-content: center;
 }
+
 .close-modal i {
   font-size: 22px;
 }
+
 .close-modal:hover {
   background: #ef4444;
   color: white;

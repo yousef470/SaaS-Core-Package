@@ -24,15 +24,13 @@
         <h1 class="logo">SaaS<span>-Core</span></h1>
 
         <nav>
-          <a class="active" href="dash.html" >
+          <a class="active" href="dash.html">
             <i class="fas fa-chart-line"></i>
             <span data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</span>
           </a>
-
-          <a href="clients.html">
+         <a href="clients.html">
             <i class="fas fa-users"></i>
             <span data-en="Clients" data-ar="العملاء">Clients</span>
-            
           </a>
 
           <a>
@@ -56,8 +54,8 @@
       <main class="main">
         <!-- Navbar -->
         <header class="navbar">
-          <h2 data-en="Dashboard Overview" data-ar="نظرة عامة">
-            Dashboard Overview
+          <h2 data-en=" client management">
+            client management
           </h2>
           <div class="navbar-actions">
             <!-- زرار اللغة -->
@@ -96,124 +94,16 @@
           </div>
         </header>
 
-        <!-- HERO -->
-        <section class="hero">
-          <div>
-            <h2 data-en="Welcome back 👋" data-ar="مرحباً بعودتك 👋">
-              Welcome back 👋
-            </h2>
-
-            <p
-              data-en="Your SaaS is growing fast. Keep pushing 🚀"
-              data-ar="منصتك تنمو بسرعة. استمر 🚀"
-            >
-              Your SaaS is growing fast. Keep pushing 🚀
-            </p>
-          </div>
-
-          <div class="hero-stats">
-            <div>
-              <span data-en="Total Revenue" data-ar="إجمالي الأرباح"
-                >Total Revenue</span
-              >
-              <h3>$128K</h3>
-            </div>
-
-            <div>
-              <span data-en="Growth" data-ar="النمو">Growth</span>
-              <h3>+32%</h3>
-            </div>
-          </div>
-        </section>
-
-        <!-- Stats -->
-<section class="stats">
-
-  <div class="card">
-
-```
-<div class="card-top">
-  <i class="fas fa-users"></i>
-  <span>Live</span>
-</div>
-
-<h3
-  data-en="Total Clients"
-  data-ar="إجمالي العملاء"
->
-  Total Clients
-</h3>
-
-<p id="totalClients">0</p>
-```
-
-  </div>
-
-  <div class="card">
-
-```
-<div class="card-top">
-  <i class="fas fa-crown"></i>
-  <span>Premium</span>
-</div>
-
-<h3
-  data-en="Premium Clients"
-  data-ar="العملاء المميزون"
->
-  Premium Clients
-</h3>
-
-<p id="premiumClients">0</p>
-```
-
-  </div>
-
-  <div class="card">
-
-```
-<div class="card-top">
-  <i class="fas fa-dollar-sign"></i>
-  <span>Revenue</span>
-</div>
-
-<h3
-  data-en="Total Revenue"
-  data-ar="إجمالي الأرباح"
->
-  Total Revenue
-</h3>
-
-<p id="totalRevenue">$0</p>
-```
-
-  </div>
-
-</section>
-
-        <!-- Charts -->
-        <section class="charts">
-          <div class="chart">
-            <h3 data-en="Growth" data-ar="النمو">Growth</h3>
-            <!-- الـ ID هنا لازم يطابق اللي في الـ JS -->
-            <canvas id="scPerformanceChart"></canvas>
-          </div>
-
-          <div class="chart">
-            <h3 data-en="Users" data-ar="المستخدمين">Users</h3>
-            <canvas id="usageChart"></canvas>
-          </div>
-        </section>
-
       <!-- Table -->
 <div class="table">
 
-  <h3
-    data-en="Latest Clients"
-    data-ar="أحدث العملاء"
+  <h1
+    data-en=" Clients"
+    data-ar=" العملاء"
+    class="client-logo"
   >
-    Latest Clients
-  </h3>
+ Clients
+  </h1>
 
   <!-- Actions -->
   <div class="table-actions">
@@ -245,6 +135,18 @@
   <!-- Clients -->
   <div class="clients-grid">
 
+
+    <button
+    type="button"
+    class="edit-revenue-btn"
+    data-id="${client.id}"
+>
+    <i class="ri-pencil-line"></i>
+</button>
+  </div>
+
+
+
 <div id="clientsSkeleton" class="clients-skeleton">
 
   <div class="skeleton-card"></div>
@@ -254,25 +156,8 @@
 </div>
   </div>
 </div>
-        <!-- Activity -->
-<section class="activity timeline">
 
-  <h3
-    data-en="Recent Activity"
-    data-ar="النشاط الأخير"
-  >
-    Recent Activity
-  </h3>
-
-  <div id="activityFeed"></div>
-
-</section>
-
-        <footer>© 2026 SaaS-Core. Developed by Youssef</footer>
-      </main>
-    </div>
-   
-    <div id="clientModal" class="modal">
+ <div id="clientModal" class="modal">
   <div class="modal-content">
 
     <div class="modal-header">
@@ -451,11 +336,8 @@
   </div>
 
 </div>
-    <!-- 1. مكتبة الـ Charts أولاً -->
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- 3. ملف الـ Dashboard JS (اللي فيه الـ Charts الخاصة بالصفحة دي بس) -->
-    <script src="assets/js/dash.js"></script>
-    <div id="toastContainer" class="toast-container"></div>
+<script src="assets/js/dash.js"></script>
+<!-- Toast Container -->
+<div id="toastContainer" class="toast-container"></div>
   </body>
 </html>

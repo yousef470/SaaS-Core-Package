@@ -1,57 +1,61 @@
 /* =========================================
    1️⃣ THEME & VARIABLES
    ========================================= */
+
 :root {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
-
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
-
   --text-main: #0f172a;
   --text-muted: #64748b;
-
   --border: #e2e8f0;
-
   --sidebar-bg: #ffffff;
-
   --accent: #06b6d4;
-
   --hero-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-
   --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
   --radius: 20px;
+  --primary-glow: rgba(99, 102, 241, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --btn-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+  --btn-shadow-hover: 0 18px 35px rgba(99, 102, 241, 0.4);
 }
 
 /* DARK MODE */
 body.dark {
   --bg-main: #0b0e14;
   --bg-card: #161b22;
-
   --text-main: #ffffff;
   --text-muted: #8b949e;
-
   --border: #30363d;
-
   --sidebar-bg: #161b22;
-
   --primary: #818cf8;
   --primary-dark: #6366f1;
-
   --accent: #22d3ee;
-}
-// 3. تطبيق الألوان في الـ Styles بتاعتك
-body {
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    transition: background 0.3s ease, color 0.3s ease; // أنميشن ناعم وقت التبديل
+  --primary-glow: rgba(129, 140, 248, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  --btn-shadow: 0 10px 30px rgba(129, 140, 248, 0.25);
+  --btn-shadow-hover: 0 20px 40px rgba(129, 140, 248, 0.45);
 }
 
-.feature-card, .sidebar, .navbar {
-    background-color: var(--bg-card);
-    border-color: var(--border);
-    color: var(--text-main);
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
 }
+
+.feature-card,
+.sidebar,
+.navbar {
+  background-color: var(--bg-card);
+  border-color: var(--border);
+  color: var(--text-main);
+}
+
 /* =========================================
    2️⃣ RESET & BASE STYLES
    ========================================= */
@@ -67,35 +71,22 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
   line-height: 1.6;
-  transition:
-    background 0.4s ease,
-    color 0.4s ease;
   overflow-x: hidden;
+}
 
-  /* RTL Support Logic */
-  &[dir="rtl"] {
-    font-family: "Inter", sans-serif;
-
-    .menu-btn {
-      margin-right: 0;
-      margin-left: 20px;
-    }
-
-    .sidebar {
-      right: 20px;
-      transform: translateX(120%);
-    }
-  }
-
-  &[dir="ltr"] {
-    .sidebar {
-      left: 20px;
-      transform: translateX(-120%);
-    }
-  }
+/* RTL & LTR Support Logic */
+body[dir="rtl"] .menu-btn {
+  margin-right: 0;
+  margin-left: 20px;
+}
+body[dir="rtl"] .sidebar {
+  right: 20px;
+  transform: translateX(120%);
+}
+body[dir="ltr"] .sidebar {
+  left: 20px;
+  transform: translateX(-120%);
 }
 
 .layout {
@@ -105,56 +96,55 @@ body {
 
 /* Preloader Styles */
 #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   background-color: var(--bg-main); /* هيتغير تلقائي مع الـ Dark Mode لو ظبطنا الـ variables */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000; /* أعلى حاجة في الصفحة */
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loader-content {
-    text-align: center;
+  text-align: center;
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(52, 152, 219, 0.1);
-    border-top: 3px solid #3498db; /* لون البراند بتاعك */
-    border-radius: 50%;
-    margin: 0 auto 15px;
-    animation: spin 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(52, 152, 219, 0.1);
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  animation: spin 1s linear infinite;
 }
 
 .loader-text {
-    font-family: sans-serif;
-    font-size: 14px;
-    color: #34495e;
-    font-weight: 500;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #34495e;
+  font-weight: 500;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* حالة الإخفاء */
 #preloader.fade-out {
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* =========================================
-   3️⃣ NAVIGATION (Glassmorphism)
+   3️⃣ NAVIGATION
    ========================================= */
 .navbar {
-position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -163,52 +153,52 @@ position: fixed;
   align-items: center;
   justify-content: space-between;
   padding: 0 25px;
-  // التعديل هنا: الخلفية بقت متغيرة حسب الثيم
   background: var(--bg-card);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--border);
   z-index: 1100;
+}
 
-  .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+.navbar .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-  .logo {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--text-main);
-  }
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
 
-  .links {
-    display: flex;
-    gap: 25px;
+.navbar .links {
+  display: flex;
+  gap: 25px;
+}
 
-    a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      transition: 0.3s;
+.navbar .links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
 
-      &:hover {
-        color: var(--primary);
-      }
-    }
-  }
+.navbar .links a:hover,
+.navbar .links a.active {
+  color: var(--primary);
+}
 
-  .navbar-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.navbar .navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #langToggle,
 #themeToggle {
   background: var(--primary);
-  border:var(--border);
+  border: 1px solid var(--border);
   color: white;
   padding: 6px 10px;
   border-radius: 8px;
@@ -235,12 +225,12 @@ position: fixed;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-right: 20px;
+}
 
-  &:hover {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: #6366f1;
-    transform: scale(1.05);
-  }
+.menu-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: #6366f1;
+  transform: scale(1.05);
 }
 
 /* =========================================
@@ -251,7 +241,7 @@ position: fixed;
   top: 80px;
   bottom: 20px;
   width: 260px;
-background: var(--bg-card);
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
   border-radius: 24px;
   border: 1px solid var(--border);
@@ -263,36 +253,33 @@ background: var(--bg-card);
   overflow-y: auto;
   opacity: 0;
   pointer-events: none;
-  transition:
-    transform 0.4s ease,
-    opacity 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
 
-  &.open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(0) !important;
-    visibility: visible;
-  }
+.sidebar.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) !important;
+  visibility: visible;
+}
 
-  /* Sidebar Links */
-  a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-    color: #94a3b8;
-    text-decoration: none;
-    border-radius: 12px;
-    margin-bottom: 8px;
-    font-weight: 500;
-    transition: 0.3s;
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  transition: 0.3s;
+}
 
-    &:hover {
-      background: rgba(99, 102, 241, 0.1);
-      color: white;
-      padding-left: 20px;
-    }
-  }
+.sidebar a:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: white;
+  padding-left: 20px;
 }
 
 .overlay {
@@ -302,11 +289,12 @@ background: var(--bg-card);
   backdrop-filter: blur(4px);
   display: none;
   z-index: 998;
-
-  &.active {
-    display: block;
-  }
 }
+
+.overlay.active {
+  display: block;
+}
+
 .btn-cta,
 .btn-secondary {
   transition: all 0.3s ease;
@@ -318,9 +306,6 @@ background: var(--bg-card);
   box-shadow: 0 15px 30px rgba(99, 102, 241, 0.25);
 }
 
-.links a.active {
-  color: var(--primary);
-}
 /* =========================================
    5️⃣ MAIN SECTIONS & HERO
    ========================================= */
@@ -339,20 +324,20 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-  }
+.hero-section h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
 
-  p {
-    max-width: 700px;
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    margin-bottom: 2.5rem;
-  }
+.hero-section p {
+  max-width: 700px;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
 }
 
 .btns-group {
@@ -383,8 +368,9 @@ main {
    ========================================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
   gap: 30px;
+  width: 100%;
 }
 
 .pain-box {
@@ -402,157 +388,192 @@ main {
   border-radius: 20px;
   transition: all 0.3s ease;
   box-shadow: var(--shadow);
-
-  &:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
-  }
-
-  .icon {
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: 20px;
-  }
 }
 
+.feature-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+.feature-card .icon {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
 /* =========================================
-   7️⃣ PRICING SECTION
+   7️⃣ PRICING SECTION - النسخة المستقرة للموبايل والويب
    ========================================= */
 .pricing-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 5%;
   text-align: center;
-  background: radial-gradient(
-    circle at center,
-    var(--primary-glow),
-    transparent
-  );
-
-  h2 {
-    margin-bottom: 60px;
-    font-size: clamp(30px, 5vw, 50px);
-    font-weight: 800;
-  }
+  padding: 80px 5%;
+  background-color: var(--bg-main);
 }
 
+.pricing-section h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  margin-bottom: 60px;
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+/* شبكة عرض الكروت الأساسية (شاشات الكمبيوتر الكبيرة) */
 .pricing-grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 30px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: nowrap;
+  align-items: stretch; /* تجعل جميع الكروت بنفس الارتفاع تلقائياً */
 }
 
 .pricing-card {
-  flex: 1;
-  min-width: 320px;
-  max-width: 400px;
-  border-radius: 30px;
-  background: var(--bg-card);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  padding: 50px 40px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  padding: 40px 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  position: relative;
+}
 
-  &:hover {
-    transform: translateY(-15px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #6366f1;
+.pricing-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.pricing-card .price {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 15px 0;
+  color: var(--text-main);
+}
+
+.pricing-card .price span {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  text-align: left;
+  flex-grow: 1; /* يدفع زر الاشتراك ليكون دائماً أسفل الكارت */
+}
+
+.pricing-card ul li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-card ul li::before {
+  content: "\f65d";
+  font-family: "remixicon";
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.pricing-card .btn-primary {
+  margin-top: auto; /* يضمن محاذاة الأزرار على خط واحد */
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: var(--btn-shadow);
+}
+
+.pricing-card .btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--btn-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* تأثير الكارت المميز Highlight */
+.pricing-card.highlight {
+  border: 2px solid var(--primary);
+  box-shadow: var(--card-shadow);
+  transform: scale(1.03);
+  z-index: 5;
+}
+
+.pricing-card:hover:not(.highlight) {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+}
+
+/* شارة الأكثر شيوعاً البنفسجية */
+.pricing-card .Most-popular {
+  position: absolute;
+  top: 0; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #a855f7;
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  z-index: 10; 
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+}
+
+/* دعم اتجاه اللغة العربية */
+[dir="rtl"] .pricing-card ul {
+  text-align: right;
+}
+
+/* =========================================
+   📱 تجاوب قسم الأسعار (Responsive Queries)
+   ========================================= */
+
+/* شاشات اللاب توب الصغيرة والتابلت العريض */
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* كارتين في الصف */
+    max-width: 750px;
+    gap: 25px;
   }
-
-  &.highlight {
-    border: 2px solid #6366f1 !important;
-    transform: scale(1.05);
-    box-shadow: 0 0 40px var(--primary-glow);
-    z-index: 2;
-
-    &:hover {
-      transform: translateY(-15px) scale(1.05);
-    }
-
-    &::before {
-      content: "Most Popular";
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: white;
-      padding: 5px 20px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-      border: none;
-      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
-      }
-    }
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-   background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-  }
-
-  ul {
-    list-style: none;
-    margin: 30px 0;
-    padding: 0;
-    text-align: start;
-  }
-
-  li {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-muted);
-
-    &::before {
-      content: "✓";
-      color: var(--primary);
-      font-weight: bold;
-    }
+  .pricing-card.highlight {
+    transform: scale(1); /* إلغاء التكبير لمنع تداخل الكروت */
   }
 }
 
-.price {
-  font-size: 4rem;
-  font-weight: 800;
-  margin: 15px 0;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
+/* شاشات الموبايل والتابلت الصغير (إصلاح شامل) */
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 60px 20px;
+  }
+  
+  .pricing-section h2 {
+    margin-bottom: 50px;
+  }
 
-  span {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-left: 5px;
+  .pricing-grid {
+    grid-template-columns: 1fr !important; /* كارت واحد عريض لكل صف يملأ الشاشة */
+    gap: 35px; /* مسافة مريحة بين الكروت الرأسية */
+    max-width: 400px; /* تحجيم الكارت ليكون شكله أنيق */
+  }
+
+  .pricing-card {
+    padding: 35px 20px; /* تقليص الحواف الداخلية ليناسب الموبايل */
+  }
+
+  .pricing-card.highlight {
+    transform: scale(1);
   }
 }
 
@@ -562,10 +583,10 @@ main {
 .contact-section-unique {
   padding: 100px 5%;
   width: 100%;
+}
 
-  h2 {
-    font-size: 40px;
-  }
+.contact-section-unique h2 {
+  font-size: 40px;
 }
 
 .contact-header-unique {
@@ -611,20 +632,18 @@ main {
   box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
 }
 
-.text-box-unique {
-  span {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-  }
+.text-box-unique span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
 
-  p {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0;
-  }
+.text-box-unique p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
 }
 
 .contact-form-unique {
@@ -632,32 +651,33 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
 
-  input,
-  textarea {
-    width: 100%;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 18px 25px;
-    border-radius: 16px;
-    color: var(--text-main);
-    transition: all 0.3s ease;
+.contact-form-unique input,
+.contact-form-unique textarea {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 18px 25px;
+  border-radius: 16px;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
 
-    &:focus {
-      border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.05);
-      outline: none;
-    }
-  }
+.contact-form-unique input:focus,
+.contact-form-unique textarea:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
 }
 
 .input-group-unique {
   display: flex;
   gap: 20px;
+}
 
-  input {
-    flex: 1;
-  }
+.input-group-unique input {
+  flex: 1;
 }
 
 .btn-submit-unique {
@@ -665,17 +685,17 @@ main {
   padding: 20px;
   border-radius: 16px;
   border: none;
- background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s ease;
+}
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
-  }
+.btn-submit-unique:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
 }
 
 /* =========================================
@@ -685,27 +705,33 @@ main {
   opacity: 0;
   transform: translateY(30px);
   transition: 1s ease-out;
+}
 
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================================
    🔟 RESPONSIVE DESIGN (Media Queries)
    ========================================= */
 
-/* Desktop & Tablets */
+@media (max-width: 1100px) {
+  .pricing-section .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    max-width: 800px;
+  }
+  .pricing-card.highlight {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 992px) {
-  .links {
+  .navbar .links {
     display: none;
   }
   .pricing-grid {
     flex-wrap: wrap;
-  }
-  .pricing-card.highlight {
-    transform: scale(1);
   }
 }
 
@@ -726,17 +752,15 @@ main {
   .navbar {
     padding: 0 15px;
   }
-  .logo {
+  .navbar .logo {
     font-size: 1.2rem;
   }
-  .navbar-buttons {
+  .navbar .navbar-buttons {
     gap: 6px;
   }
 }
 
-/* Mobile Devices */
 @media (max-width: 768px) {
-  /* Navbar Actions Fix */
   .nav-actions,
   .theme-switch,
   .lang-switch,
@@ -752,18 +776,25 @@ main {
     border-top: 1px solid #eee;
   }
 
-  /* Contact Mobile Fix */
+  .pricing-section {
+    padding: 60px 20px;
+  }
+  .pricing-section .grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+  .pricing-card {
+    padding: 40px 25px;
+  }
+
   .contact-section-unique {
     padding: 60px 20px;
-
-    .contact-header-unique {
-      h2 {
-        font-size: 28px;
-      }
-      p {
-        font-size: 14px;
-      }
-    }
+  }
+  .contact-section-unique .contact-header-unique h2 {
+    font-size: 28px;
+  }
+  .contact-section-unique .contact-header-unique p {
+    font-size: 14px;
   }
 
   .contact-grid-unique {
@@ -787,17 +818,15 @@ main {
 
   .contact-form-unique {
     gap: 15px;
-
-    input,
-    textarea {
-      padding: 14px 16px;
-      font-size: 14px;
-      border-radius: 12px;
-    }
-
-    textarea {
-      min-height: 120px;
-    }
+  }
+  .contact-form-unique input,
+  .contact-form-unique textarea {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+  .contact-form-unique textarea {
+    min-height: 120px;
   }
 
   .input-group-unique {
@@ -809,31 +838,25 @@ main {
     font-size: 0.95rem;
     border-radius: 12px;
   }
-}
 
-@media (max-width: 768px) {
   .navbar {
     padding: 0 15px;
-    
-    .links {
-      display: none; // اللينكات تختفي في الموبايل وتظهر في السايد بار
-    }
-
-    .nav-left {
-        gap: 10px;
-    }
-
-    .logo {
-        font-size: 1.1rem;
-        white-space: nowrap;
-    }
+  }
+  .navbar .links {
+    display: none;
+  }
+  .navbar .nav-left {
+    gap: 10px;
+  }
+  .navbar .logo {
+    font-size: 1.1rem;
+    white-space: nowrap;
   }
 
-  // تصحيح مكان السايد بار في الموبايل
   .sidebar {
-    width: 85%; // ياخد مساحة أكبر في الموبايل
+    width: 85%;
     top: 75px;
-    left: 7.5%; // توسيط
+    left: 7.5%;
   }
 }
 
@@ -845,16 +868,14 @@ a:focus {
   outline-offset: 3px;
 }
 
-
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  h3 {
-    font-size: 24px;
-    font-weight: 700;
-  }
+}
+.modal-header h3 {
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .close-modal {
@@ -866,19 +887,17 @@ a:focus {
   color: var(--text-main);
   cursor: pointer;
   transition: 0.3s;
-
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.close-modal i {
+  font-size: 22px;
+}
 
-  i {
-    font-size: 22px;
-  }
-
-  &:hover {
-    background: #ef4444;
-    color: white;
-  }
+.close-modal:hover {
+  background: #ef4444;
+  color: white;
 }
 
 .modal-actions {

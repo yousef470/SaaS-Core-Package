@@ -53,6 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
       avatar: "assets/images/251.png",
     },
   ];
+
+  let performanceChart = null;
+  let usageChart = null;
+
+
   const modal = document.getElementById("clientModal");
   const openBtn = document.getElementById("openModal");
   const closeBtn = document.getElementById("closeModal");
@@ -90,11 +95,44 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(toast);
 
     setTimeout(() => {
+      toast.classList.add("hide");
+    }, 2600);
+
+    setTimeout(() => {
       toast.remove();
     }, 3000);
   }
   // 2. دالة حفظ العميل الجديد
   let activities = JSON.parse(localStorage.getItem("sc-activities")) || [];
+  let editingClientId = null;
+  function validateClient(name, email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name.trim().length < 3) {
+      showToast("Client name must be at least 3 characters", "error");
+
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      showToast("Please enter a valid email", "error");
+
+      return false;
+    }
+    const emailExists = clients.some((client) => {
+      return (
+        client.email.toLowerCase() === email.toLowerCase() &&
+        client.id !== editingClientId
+      );
+    });
+
+    if (emailExists) {
+      showToast("This email already exists", "error");
+
+      return false;
+    }
+    return true;
+  }
   function saveClient() {
     // جلب القيم من الـ IDs اللي في الـ HTML بتاعك
     const name = document.getElementById("clientName").value;
@@ -104,31 +142,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatar = document.getElementById("clientAvatar").value;
 
     // التحقق إن الاسم والإيميل مش فاضيين
-    if (!name.trim() || !email.trim()) {
-      showToast("Name and Email are required!", "error");
-      return;
+    if (!validateClient(name, email)) return;
+
+    if (editingClientId) {
+      clients = clients.map((client) => {
+        if (client.id === editingClientId) {
+          return {
+            ...client,
+            name,
+            email,
+            status: status || "Active Client",
+            type,
+            avatar: avatar || "assets/images/251.png",
+          };
+        }
+
+        return client;
+      });
+
+      localStorage.setItem("sc-clients", JSON.stringify(clients));
+
+      showToast("Client Updated Successfully");
+
+      addActivity(`${name} updated`);
+
+      editingClientId = null;
+    } else {
+      const newClient = {
+        id: Date.now(),
+        name,
+        email,
+        status: status || "Active Client",
+        type,
+        avatar: avatar || "assets/images/251.png",
+        revenue: "$0",
+        joined: "Just now",
+        online: true,
+      };
+
+      clients.unshift(newClient);
+
+      localStorage.setItem("sc-clients", JSON.stringify(clients));
+
+      showToast("Client Added Successfully");
+
+      addActivity(`${name} added as new client`);
     }
 
-    const newClient = {
-      id: Date.now(),
-      name: name,
-      email: email, // حفظ الإيميل في بيانات العميل
-      status: status || "Active Client",
-      type: type,
-      avatar: avatar || "assets/images/251.png",
-      revenue: "$0",
-      joined: "Just now",
-      online: true,
-    };
+ 
 
-    clients.unshift(newClient); // إضافة في أول القائمة
-    // ✅ الحفظ الحقيقي
-    localStorage.setItem("sc-clients", JSON.stringify(clients));
-    showToast("Client Added Successfully");
-    addActivity(`${name} added as new client`);
     renderClients(); // إعادة رسم الكروت عشان يظهر الجديد
     closeModal(); // قفل المودال وتنظيف الخانات
+    updateStats();
+    renderActivities();
+    updateCharts();
   }
+  
   // 3. مستمعي الأحداث (Event Listeners)
   if (openBtn) {
     openBtn.addEventListener("click", () => modal.classList.add("active"));
@@ -149,59 +218,108 @@ document.addEventListener("DOMContentLoaded", () => {
   if (saveBtn) {
     saveBtn.addEventListener("click", saveClient);
   }
+  let deleteClientId = null;
 
-  // 4. دالة حذف العميل (تأكد إنها موجودة عشان زرار المسح يشتغل)
+  const deleteModal = document.getElementById("deleteModal");
+
+  const confirmDeleteBtn = document.getElementById("confirmDelete");
+  
+
+  const cancelDeleteBtn = document.getElementById("cancelDelete");
+  
+
+if (cancelDeleteBtn) {
+  cancelDeleteBtn.addEventListener("click", () => {
+    deleteModal.classList.remove("active");
+  });
+}
+
+if (deleteModal) {
+  deleteModal.addEventListener("click", (e) => {
+    if (e.target === deleteModal) {
+      deleteModal.classList.remove("active");
+    }
+      });
+      }
   function attachDeleteEvents() {
     document.querySelectorAll(".delete-client").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const card = e.target.closest(".client-card");
-        const id = parseInt(card.dataset.id);
-        clients = clients.filter((c) => c.id !== id);
-        // ✅ تحديث التخزين
-        localStorage.setItem("sc-clients", JSON.stringify(clients));
-        showToast("Client Deleted", "error");
-        addActivity("Client deleted", "delete");
-        renderClients();
-        renderActivities();
+
+        deleteClientId = parseInt(card.dataset.id);
+
+        if (deleteModal) {
+          deleteModal.classList.add("active");
+        }
+      });
+    });
+  }
+  function attachMenuEvents() {
+    document.querySelectorAll(".menu-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        const menu = btn.parentElement.querySelector(".client-menu");
+
+        document.querySelectorAll(".client-menu").forEach((m) => {
+          if (m !== menu) {
+            m.classList.remove("active");
+          }
+        });
+
+        menu.classList.toggle("active");
+      });
+    });
+
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".client-menu").forEach((menu) => {
+        menu.classList.remove("active");
       });
     });
   }
 
-function renderClients(data = clients) {
-
+  function renderClients(data = clients) {
     const grid = document.querySelector(".clients-grid");
 
     if (!grid) return;
 
     grid.innerHTML = "";
+    if (data.length === 0) {
+      grid.innerHTML = `
+      <div class="empty-state">
+          <i class="ri-user-search-line"></i>
+          <h3>No Clients Found</h3>
+          <p>Try adding a new client.</p>
+      </div>
+  `;
+      return;
+    }
 
-    data.forEach((client) => {
+   const recentClients =
+window.location.pathname.includes("clients.html")
+? data
+: data.slice(0, 3);
 
-        grid.innerHTML += `
+recentClients.forEach((client) => {
+      grid.innerHTML += `
 
-        <div class="client-card ${client.type}" data-id="${client.id}">
+<div class="client-card ${client.type}" data-id="${client.id}">
 
-            <div class="client-header">
+    <div class="client-header">
 
-                <div class="client-avatar-wrapper">
+        <div class="client-user">
 
-                    <img
-                      src="${client.avatar}"
-                      class="avatar"
-                      onerror="this.src='assets/images/251.png'"
-                    />
+            <div class="client-avatar-wrapper">
 
-                    <span class="online-status ${
-                      client.online ? "active" : ""
-                    }"></span>
+                <img
+                    src="${client.avatar}"
+                    class="avatar"
+                    onerror="this.src='assets/images/251.png'"
+                />
 
-                </div>
-
-                <div class="client-actions">
-
-                    <i class="ri-more-2-fill"></i>
-
-                </div>
+                <span class="online-status ${
+                  client.online ? "active" : ""
+                }"></span>
 
             </div>
 
@@ -213,62 +331,234 @@ function renderClients(data = clients) {
 
             </div>
 
-            <div class="client-stats">
+        </div>
 
-                <div>
-                    <span>Revenue</span>
-                    <strong>${client.revenue}</strong>
-                </div>
+        <div class="client-actions">
 
-                <div>
-                    <span>Status</span>
-                    <strong>${client.status}</strong>
-                </div>
-
-            </div>
-
-            <div class="client-footer">
-
-                <span class="badge ${client.type}">
-                    ${client.type}
-                </span>
-
-                <small>${client.joined}</small>
-
-            </div>
-
-            <button class="delete-btn delete-client">
-                <i class="ri-delete-bin-line"></i>
+            <button class="menu-btn">
+                <i class="ri-more-2-fill"></i>
             </button>
 
+            <div class="client-menu">
+
+                <button class="edit-client">
+                    <i class="ri-edit-line"></i>
+                    Edit
+                </button>
+
+                <button class="delete-client danger">
+                    <i class="ri-delete-bin-line"></i>
+                    Delete
+                </button>
+
+            </div>
+
         </div>
-        `;
+
+    </div>
+
+    <div class="client-stats">
+
+        <div class="stat-box">
+
+            <span>Revenue</span>
+
+           <div class="revenue-box">
+
+    <strong>
+        ${client.revenue}
+    </strong>
+
+    <button
+        class="edit-revenue-btn"
+        data-id="${client.id}"
+    >
+        <i class="ri-pencil-line"></i>
+    </button>
+
+</div>
+
+        </div>
+
+        <div class="stat-box">
+
+            <span>Status</span>
+
+            <strong>${client.status}</strong>
+
+        </div>
+
+    </div>
+
+    <div class="client-footer">
+
+        <span class="badge ${client.type}">
+            ${client.type}
+        </span>
+
+        <small>${client.joined}</small>
+
+    </div>
+
+</div>
+`;
     });
 
-    attachDeleteEvents();
-}
+setTimeout(() => {
+  attachDeleteEvents();
+  attachMenuEvents();
+  attachEditEvents();
+  setActiveLink();
+}, 100);
+  }
+
+  function attachEditEvents() {
+    document
+    .querySelectorAll(".edit-client").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const button = e.currentTarget;
+
+       const card = button.closest(".client-card");
+
+        const id = parseInt(card.dataset.id);
+
+        const client = clients.find((c) => c.id === id);
+
+        if (!client) return;
+
+        editingClientId = id;
+
+        document.getElementById("clientName").value = client.name;
+
+        document.getElementById("clientEmail").value = client.email;
+
+        document.getElementById("clientStatus").value = client.status;
+
+        document.getElementById("clientType").value = client.type;
+
+        document.getElementById("clientAvatar").value = client.avatar;
+
+        modal.classList.add("active");
+      });
+    });
+  }
+
+
 
   // استدعاء الدالة لأول مرة عشان تعرض البيانات التجريبية
   renderClients();
-  const searchInput = document.querySelector(".search-box input");
+  updateStats();
+  updateCharts();
+  renderActivities();
 
+  // ===============================
+// 💰 EDIT REVENUE
+// ===============================
+document.addEventListener("click", (e) => {
+
+  const revenueBtn =
+    e.target.closest(".edit-revenue-btn");
+
+  if (!revenueBtn) return;
+
+  e.preventDefault();
+
+  const clientId =
+    Number(revenueBtn.dataset.id);
+
+  const client =
+    clients.find(c => c.id === clientId);
+
+  if (!client) return;
+
+  const modal =
+    document.getElementById("revenueModal");
+
+  const input =
+    document.getElementById("revenueInput");
+
+  const saveBtn =
+    document.getElementById("saveRevenueBtn");
+
+  input.value =
+    client.revenue.replace(/[^0-9]/g, "");
+
+  modal.classList.add("active");
+
+  saveBtn.onclick = () => {
+
+    const revenueNumber =
+      parseInt(input.value);
+
+    if (isNaN(revenueNumber)) {
+
+      showToast(
+        "Please enter numbers only",
+        "error"
+      );
+
+      return;
+    }
+
+    client.revenue =
+      "$" + revenueNumber.toLocaleString();
+
+    localStorage.setItem(
+      "sc-clients",
+      JSON.stringify(clients)
+    );
+
+    renderClients();
+
+    updateStats();
+
+    updateCharts();
+
+    showToast("Revenue Updated");
+
+    modal.classList.remove("active");
+
+  };
+
+  const closeRevenueModal =
+  document.getElementById("closeRevenueModal");
+
+if (closeRevenueModal) {
+
+  closeRevenueModal.addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById("revenueModal")
+        .classList.remove("active");
+
+    }
+  );
+
+}
+
+});
+
+
+  const searchInput = document.querySelector(".search-box input");
 
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
       const value = e.target.value.toLowerCase();
 
-     const filtered = clients.filter((client) =>
-  client.name.toLowerCase().includes(value)
-);
+      const filtered = clients.filter((client) =>
+        client.name.toLowerCase().includes(value),
+      );
 
       renderClients(filtered);
     });
   }
   const skeleton = document.getElementById("clientsSkeleton");
 
-if (skeleton) {
+  if (skeleton) {
     skeleton.style.display = "grid";
-}
+  }
 
   function addActivity(text, type = "add") {
     const activity = {
@@ -291,6 +581,25 @@ if (skeleton) {
     if (!feed) return;
 
     feed.innerHTML = "";
+    if (activities.length === 0) {
+      feed.innerHTML = `
+
+        <div class="empty-state activity-empty">
+
+            <i class="ri-time-line"></i>
+
+            <h3>No Activities Yet</h3>
+
+            <p>
+                Client actions will appear here
+            </p>
+
+        </div>
+
+    `;
+
+      return;
+    }
 
     activities.slice(0, 8).forEach((activity) => {
       feed.innerHTML += `
@@ -306,82 +615,176 @@ if (skeleton) {
             </div>
         `;
     });
-
-    if (data.length === 0) {
-    grid.innerHTML = `
-        <div class="empty-state">
-            <i class="ri-user-search-line"></i>
-            <h3>No Clients Found</h3>
-            <p>Try adding a new client.</p>
-        </div>
-    `;
-    return;
-}
   }
-  
+
   if (skeleton) {
     skeleton.style.display = "none";
-}
+  }
+
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener("click", () => {
+      clients = clients.filter((client) => client.id !== deleteClientId);
+
+      localStorage.setItem("sc-clients", JSON.stringify(clients));
+
+      showToast("Client Deleted", "error");
+
+      addActivity("Client deleted", "delete");
+
+      renderClients();
+      renderActivities();
+      updateStats();
+      updateCharts();
+
+      
+
+      if (deleteModal) {
+        deleteModal.classList.remove("active");
+      }
+    });
+  }
+
+  
+
   // ===============================
   // 📈 3. CHARTS (UNCHANGED BUT CLEAN)
   // ===============================
 
-  const perfCtx = document.getElementById("scPerformanceChart");
-  if (perfCtx) {
-    new Chart(perfCtx.getContext("2d"), {
-      type: "line",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-          {
-            label: "Revenue",
-            data: [12000, 19000, 15000, 25000, 22000, 42850],
-            borderColor: "#6366f1",
-            backgroundColor: "rgba(99, 102, 241, 0.1)",
-            fill: true,
-            tension: 0.4,
-            borderWidth: 3,
-            pointRadius: 4,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: { color: "rgba(200, 200, 200, 0.1)" },
-          },
-          x: { grid: { display: false } },
-        },
-      },
+  function updateCharts() {
+    const revenues = clients.map((client) => {
+      return parseInt(client.revenue.replace(/[^0-9]/g, "")) || 0;
     });
+
+    const labels = clients.map((client) => client.name);
+
+    if (performanceChart) {
+      performanceChart.destroy();
+    }
+
+    if (usageChart) {
+      usageChart.destroy();
+    }
+
+    const perfCtx = document.getElementById("scPerformanceChart");
+
+    if (perfCtx) {
+      performanceChart = new Chart(perfCtx.getContext("2d"), {
+        type: "line",
+
+        data: {
+          labels,
+
+          datasets: [
+            {
+              label: "Revenue",
+
+              data: revenues,
+
+              borderColor: "#6366f1",
+
+              backgroundColor: "rgba(99,102,241,.1)",
+
+              fill: true,
+
+              tension: 0.4,
+
+              borderWidth: 3,
+
+              pointRadius: 4,
+            },
+          ],
+        },
+
+        options: {
+          responsive: true,
+
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+    }
+
+    const usageCtx = document.getElementById("usageChart");
+
+    if (usageCtx) {
+      usageChart = new Chart(usageCtx.getContext("2d"), {
+        type: "bar",
+
+        data: {
+          labels,
+
+          datasets: [
+            {
+              label: "Revenue",
+
+              data: revenues,
+
+              backgroundColor: "#a855f7",
+
+              borderRadius: 10,
+            },
+          ],
+        },
+
+        options: {
+          responsive: true,
+
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+    }
   }
 
-  const usageCtx = document.getElementById("usageChart");
-  if (usageCtx) {
-    new Chart(usageCtx.getContext("2d"), {
-      type: "bar",
-      data: {
-        labels: ["AI", "Web", "App", "API"],
-        datasets: [
-          {
-            label: "Usage",
-            data: [400, 600, 300, 500],
-            backgroundColor: "#a855f7",
-            borderRadius: 8,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-      },
-    });
-  } // ===============================
+  function updateStats() {
+    const totalClients = document.getElementById("totalClients");
+
+    const activeClients = document.getElementById("activeClients");
+
+    const totalRevenue = document.getElementById("totalRevenue");
+
+    const premiumClients = document.getElementById("premiumClients");
+
+    if (totalClients) {
+      totalClients.innerText = clients.length;
+    }
+
+    const activeCount = clients.filter((client) => client.online).length;
+
+    if (activeClients) {
+      activeClients.innerText = activeCount;
+    }
+
+const premiumCount = clients.filter(
+  (client) => client.type === "premium"
+).length;
+
+if (premiumClients) {
+  premiumClients.innerText = premiumCount;
+}
+
+
+
+
+    const revenue = clients.reduce((total, client) => {
+      return total + (parseInt(client.revenue.replace(/[^0-9]/g, "")) || 0);
+    }, 0);
+
+    if (totalRevenue) {
+      totalRevenue.innerText = "$" + revenue.toLocaleString();
+    }
+  }
+  // ===============================
   // 🎨 4. THEME SYSTEM
   // ===============================
 
@@ -439,16 +842,32 @@ if (skeleton) {
         notifDropdown.classList.remove("active");
       }
     }
-  }); // ===============================
-  // 📱 6. SIDEBAR (MOBILE READY)
-  // ===============================
+  }); 
+  
+// ===============================
+// 📱 6. SIDEBAR (STRICT ACTIVE LINK)
+// ===============================
+const setActiveLink = () => {
 
-  const menuBtn = document.getElementById("toggleSidebar");
-  const sidebar = document.querySelector(".sidebar");
+  const sidebarLinks =
+    document.querySelectorAll(".sidebar a");
 
-  if (menuBtn && sidebar) {
-    menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("collapsed");
-    });
-  }
+  const currentPage =
+    window.location.pathname.split("/").pop();
+
+  sidebarLinks.forEach((link) => {
+
+    link.classList.remove("active");
+
+    const href = link.getAttribute("href");
+
+    if (href === currentPage) {
+      link.classList.add("active");
+    }
+
+  });
+
+};
+
+setActiveLink();
 });

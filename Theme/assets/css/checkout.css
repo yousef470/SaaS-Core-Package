@@ -1,0 +1,604 @@
+:root {
+  --bg-main: #ffffff;
+  --bg-secondary: #f8fafc;
+
+  --primary: #6c4dff;
+  --primary-hover: #5a3ee6;
+  --primary-soft: #ede9fe;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --border: rgba(255, 255, 255, 0.2);
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --btn-bg: linear-gradient(135deg, #6c4dff, #00e5ff);
+}
+
+body.dark {
+  --bg-main: #0b0f1a;
+  --bg-secondary: #0f172a;
+
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --border: rgba(255, 255, 255, 0.08);
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+.navbar {
+  height: 80px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-actions button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.back-btn{
+  width:45px;
+  height:45px;
+
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  background:var(--primary-soft);
+
+  color:var(--primary);
+
+  font-size:18px;
+
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+}
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.checkout-section {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+
+  padding: 40px 0;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  padding: 35px;
+
+  box-shadow: var(--shadow);
+}
+
+.checkout-form h2,
+.checkout-summary h2 {
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.input-group input {
+  width: 100%;
+  height: 55px;
+
+  border: none;
+  outline: none;
+
+  background: var(--bg-secondary);
+
+  border-radius: 16px;
+
+  padding: 0 18px;
+
+  color: var(--text-main);
+
+  font-size: 15px;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 15px;
+}
+
+.payment {
+  flex: 1;
+
+  height: 60px;
+
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: var(--bg-secondary);
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.payment.active {
+  border: 2px solid var(--primary);
+}
+
+.checkout-btn {
+  width: 100%;
+  height: 60px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: var(--btn-bg);
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  transform: translateY(-2px);
+}
+
+.summary-plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.summary-plan span {
+  color: var(--text-muted);
+}
+
+.summary-features {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--text-muted);
+}
+
+.feature i {
+  color: #00d084;
+}
+
+.total-box {
+  margin-top: 35px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .checkout-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.payment-modal{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.6);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.3s;
+
+  z-index:999;
+}
+
+
+.payment-modal.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.modal-box{
+  width:95%;
+  max-width:500px;
+
+  background:var(--card-bg);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid var(--border);
+
+  border-radius:28px;
+
+  padding:30px;
+
+  animation:modalUp .4s ease;
+}
+
+@keyframes modalUp{
+
+  from{
+    transform:translateY(30px);
+    opacity:0;
+  }
+
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.modal-top button{
+  width:40px;
+  height:40px;
+
+  border:none;
+  border-radius:12px;
+
+  background:var(--primary-soft);
+
+  cursor:pointer;
+}
+
+.card-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.pay-btn{
+  width:100%;
+  height:58px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:var(--btn-bg);
+
+  color:white;
+
+  font-size:16px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  margin-top:15px;
+}
+
+/* =========================
+   SUCCESS PAGE (Premium & Adaptive)
+========================= */
+.success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-main); /* يتغير تلقائياً مع الدارك مود */
+  margin: 0;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* إضافة لمسة إضاءة خلفية جمالية */
+.success-page::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  filter: blur(150px);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.success-card {
+  width: 100%;
+  max-width: 550px; /* كبرنا العرض شوية عشان التفاصيل الجديدة */
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  padding: 50px 40px;
+  border-radius: 32px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+  animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #00d084, #00e5ff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  margin: 0 auto 30px;
+  box-shadow: 0 10px 25px rgba(0, 208, 132, 0.3);
+  animation: successPulse 2s infinite;
+}
+
+@keyframes successPulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 208, 132, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(0, 208, 132, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 208, 132, 0); }
+}
+
+.success-card h1 {
+  color: var(--text-main);
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.success-card p {
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+/* صندوق تفاصيل الطلب - لملأ الفراغ */
+.order-summary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 35px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.summary-item .label {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.summary-item .value {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* الأزرار بجانب بعضها */
+.success-actions {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 15px;
+}
+
+.back-btn-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--btn-bg);
+  color: white !important;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.print-btn {
+  background: var(--bg-secondary);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-btn-success:hover, .print-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+/* دعم الـ RTL (العربية) */
+body.dark .success-card {
+  background: var(--card-bg);
+}
+
+body[style*="direction: rtl"] .summary-item {
+  flex-direction: row-reverse;
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* =========================
+   ANIMATIONS
+========================= */
+
+.card{
+  animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .checkout-section{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:24px;
+  }
+
+  .checkout-form h2,
+  .checkout-summary h2{
+    font-size:24px;
+  }
+
+  .card-row{
+    grid-template-columns:1fr;
+  }
+
+  .navbar{
+    padding:0 20px;
+  }
+
+}
+
+.payment { cursor: pointer; transition: 0.3s; }
+.payment.active {
+    border-color: #2d98da; /* لون التحديد */
+    background: rgba(45, 152, 218, 0.1);
+}
+
+/* الألوان العادية */
+:root {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #0f172a;
+}
+
+/* ألوان الدارك مود */
+body.dark {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-color: #f8fafc;
+  --border: #334155;
+}
+
+/* تطبيق المتغيرات على كارت النجاح */
+.success-card {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border);
+}

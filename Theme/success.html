@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Success | Nexora</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+
+  <body class="success-page">
+    <div class="bg-glow"></div>
+
+    <div class="success-card">
+      <div class="success-header">
+        <div class="success-icon pulse">
+          <i class="fas fa-check"></i>
+        </div>
+        <h1 id="success-title">Payment Successful</h1>
+        <p id="success-description">
+          Your account has been upgraded successfully.
+        </p>
+      </div>
+<div class="order-summary">
+  <div class="summary-item">
+    <span class="label" id="label-plan">Plan</span>
+    <!-- الـ JS هيغير النص اللي هنا -->
+    <strong class="value" id="val-plan">Pro Plan</strong>
+  </div>
+  <div class="summary-item">
+    <span class="label" id="label-id">Order ID</span>
+    <strong class="value">#NX-2026-9910</strong>
+  </div>
+  <div class="summary-item total">
+    <span class="label" id="label-amount">Amount Paid</span>
+    <!-- ضفنا id هنا اسمه val-amount -->
+    <strong class="value" id="val-amount">$49.00</strong>
+  </div>
+</div>
+
+      <div class="success-actions">
+        <a href="dash.html" class="back-btn-success" id="success-btn">
+          Go to Dashboard
+        </a>
+        <button class="print-btn" onclick="window.print()" id="print-btn">
+          <i class="fas fa-download"></i> <span id="label-print">Receipt</span>
+        </button>
+      </div>
+
+      <div class="cta-note">
+        <small id="success-note">
+          A confirmation email has been sent to your inbox.
+        </small>
+      </div>
+    </div>
+
+    <script src="assets/js/success.js"></script>
+  </body>
+</html>
