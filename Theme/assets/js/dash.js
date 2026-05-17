@@ -845,28 +845,29 @@ if (premiumClients) {
   }); 
   
 // ===============================
-// 📱 6. SIDEBAR (STRICT ACTIVE LINK)
+// 📱 6. SIDEBAR (STRICT ACTIVE LINK) - FIXED FOR LIVE DEMO
 // ===============================
 const setActiveLink = () => {
-
-  const sidebarLinks =
-    document.querySelectorAll(".sidebar a");
-
-  const currentPage =
-    window.location.pathname.split("/").pop();
+  const sidebarLinks = document.querySelectorAll(".sidebar a");
+  
+  // الرابط الحالي بالكامل في المتصفح (شاملاً الدومين والمسار)
+  const currentUrl = window.location.href;
 
   sidebarLinks.forEach((link) => {
-
     link.classList.remove("active");
 
-    const href = link.getAttribute("href");
+    // تحويل الـ href (سواء كان نسبي أو مطلق) إلى رابط كامل يعتمد على موقع المتصفح الحالي
+    const linkUrl = new URL(link.getAttribute("href"), window.location.origin + window.location.pathname).href;
 
-    if (href === currentPage) {
+    // نقوم بإزالة الشرطة المائلة الأخيرة (Trailing Slash) وعلامات الـ Hash/Query للضمان
+    const cleanCurrent = currentUrl.replace(/\/$/, "").split('?')[0].split('#')[0];
+    const cleanLink = linkUrl.replace(/\/$/, "").split('?')[0].split('#')[0];
+
+    // مقارنة الرابطين بالكامل
+    if (cleanCurrent === cleanLink) {
       link.classList.add("active");
     }
-
   });
-
 };
 
 setActiveLink();
